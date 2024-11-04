@@ -1,26 +1,27 @@
-from flask import Flask
+from flask import Flask, render_template, request
+import datetime
 
 app = Flask(__name__)
 
 @app.route("")
 def home():
-    return "Home page"
+    return render_template("index.html")
 
 @app.route("/signup")
 def signup():
-    return "It works"
+    return render_template("signup.html")
 
 @app.route("/chat")
 def chat():
-    return "It works again"
+    return render_template("chat.html")
 
 @app.route("/order")
 def order():
-    return "yep it works"
+    return render_template("order.html")
 
 @app.route("/account")
 def account():
-    return "again it works"
+    return render_template("account.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
