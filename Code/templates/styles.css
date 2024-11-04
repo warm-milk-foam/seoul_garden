@@ -1,11 +1,3 @@
-@font-face {
-    font-family: 'Conneqt';
-    src: url('Conneqt Black.ttf') format('truetype'),
-         url('Conneqt Bold.ttf') format('truetype'),
-         url('Conneqt Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
 body {
-    font-family: 'Conneqt', Arial, sans-serif;
+    font-family: 'FS Me', sans-serif;
 }
