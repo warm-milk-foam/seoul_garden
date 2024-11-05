@@ -10,11 +10,17 @@ python3 app.py
 ```
 to the start the Flask application.  
 
+Credits to:
+1) Seoul Garden for food images (ONLY FOR REFERENCE) to simulate the experience.  
+2) AWS Accelerator mentors, who gave us this challenge statement have guided us in the making of the project  
+3) And you, for bothering to read this.  
+4) ~~Mistral, ChatGPT and Phind, the reason why the code is present right now~~
+
 
 # Features
-The Flask project attempts to simulate an experience ordering food from a restaurant with a chatbot  
-DISCLAIMER: This is just a project statement and WILL NOT have real functionality in ordering actual food.  
-Credits to Seoul Garden for food images (ONLY FOR REFERENCE) to simulate the experience.  
+The Flask project attempts to simulate an experience ordering food from a restaurant with an AI chatbot.  
+DISCLAIMER: This is just a local project and WILL NOT have real functionality in ordering actual food. It can only be accessed by the person running it and will be inaccessible to others on the internet.  
+  
 1) Create and authenticate accounts 
 2) Use an AI model to promote and give suggestions on deals, using information from order histories
 3) Order food online
