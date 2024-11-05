@@ -2,6 +2,15 @@ from flask import Flask, request, render_template, redirect, url_for, flash, ses
 import os
 import uuid
 from datetime import datetime
+#specifically for AI
+import subprocess, jsonify
+
+def chatbot_response(user_input, model_name="llama3.2"):
+    # Use subprocess to run the Ollama CLI command
+    command = f"ollama run {model_name} --input '{user_input}'"
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    response = result.stdout.strip()
+    return response
 
 app = Flask(__name__)
 app.secret_key = "this_key_does_not_need_to_be_private_lmao"
@@ -62,6 +71,10 @@ def chat():
     if 'user_id' not in session:
         flash('You need to be logged in to access this page.', 'danger')
         return redirect(url_for('signin'))    
+    if request.method == "POST":
+        user_input = request.form["user_input"]
+        response = chatbot_response(user_input)
+        return jsonify({"response": response})
     return render_template("chat.html")
 
 @app.route("/order")
