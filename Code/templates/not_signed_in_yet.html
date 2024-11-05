@@ -48,5 +48,14 @@
          <a href="/account">Account</a>
       </div>
       <h1 class="text">You need an account to access this feature</h1>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+         
+          {% for message in messages %}
+              <p class="flash">{{ message }}</li>
+          {% endfor %}
+   
+      {% endif %}
+      {% endwith %}   
    </body>
 </html>

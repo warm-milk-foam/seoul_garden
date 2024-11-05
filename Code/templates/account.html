@@ -53,6 +53,14 @@
         <p><strong>Email:</strong> {{ user_info.email }}</p>
         <p><strong>Created At:</strong> {{ user_info.created_at }}</p>
       </div>
-
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+         
+          {% for message in messages %}
+              <p class="flash">{{ message }}</li>
+          {% endfor %}
+   
+      {% endif %}
+      {% endwith %}   
    </body>
 </html>

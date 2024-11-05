@@ -9,6 +9,10 @@
          body {
          font-family: 'Roboto', sans-serif;
          }
+         .flash {
+            /*This is the code where we style the flash messages */
+            color: #04AA6D;
+         }
          form {
             padding-left: 30px;
          }
@@ -35,6 +39,7 @@
       </style>
    </head>
    <body>
+   
       <div class="topnav">
          <a class="active" href="/">Home</a>
          <a href="/signup">Sign up</a>
@@ -51,5 +56,14 @@
          <input type="password" id="password" name="password" required><br><br>
          <input type="submit" value="Sign In">
        </form>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+         
+          {% for message in messages %}
+              <p class="flash">{{ message }}</li>
+          {% endfor %}
+   
+      {% endif %}
+      {% endwith %}   
    </body>
 </html>

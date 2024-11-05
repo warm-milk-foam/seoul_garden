@@ -60,10 +60,16 @@
       <h1 class="text">Ordering page</h1>
       <div class="user-info">
          <h2>Account Information</h2>
-         <p><strong>User ID:</strong> {{ user_info.user_id }}</p>
-         <p><strong>Username:</strong> {{ user_info.username }}</p>
-         <p><strong>Email:</strong> {{ user_info.email }}</p>
-         <p><strong>Created At:</strong> {{ user_info.created_at }}</p>
+
+         {% with messages = get_flashed_messages() %}
+         {% if messages %}
+            
+             {% for message in messages %}
+                 <p class="flash">{{ message }}</li>
+             {% endfor %}
+      
+         {% endif %}
+         {% endwith %}   
      </div>
    </body>
 </html>

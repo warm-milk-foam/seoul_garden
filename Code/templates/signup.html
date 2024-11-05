@@ -60,5 +60,14 @@
         <input type="text" id="email" name="email" required><br><br>
         <input type="submit">
       </form>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+         
+          {% for message in messages %}
+              <p class="flash">{{ message }}</li>
+          {% endfor %}
+   
+      {% endif %}
+      {% endwith %}   
    </body>
 </html>
