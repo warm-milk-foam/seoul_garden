@@ -35,7 +35,7 @@ def signup():
             open(order_history_path, 'w').close()
         
         flash('Account created successfully!', 'success')
-        return redirect(url_for('index'))
+        return redirect(url_for('order'))
 
     return render_template("signup.html")
 
