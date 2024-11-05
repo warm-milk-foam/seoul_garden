@@ -1,5 +1,4 @@
 from flask import Flask, request, render_template, redirect, url_for, flash, session
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import os
 import uuid
 from datetime import datetime
@@ -11,7 +10,6 @@ if not os.path.exists('accounts'):
     os.makedirs('accounts')
 if not os.path.exists('orders'):
     os.makedirs('orders')
-# emergency code i suppose
 
 @app.route("/")
 def home():
@@ -22,43 +20,49 @@ def signup():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        email = request.form['email'] # these 3 are obvious
-        user_id = str(uuid.uuid4()) # unqiue user id
-        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S') # date of account creation
+        email = request.form['email']
+        user_id = str(uuid.uuid4())
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-        account_info = f"User ID: {user_id}\nUsername: {username}\nPassword: {password}\nCreated At: {timestamp}\n"
+        account_info = f"User ID: {user_id}\nUsername: {username}\nPassword: {password}\nEmail: {email}\nCreated At: {timestamp}\n"
         with open(f'accounts/{user_id}_account.txt', 'w') as file:
             file.write(account_info)
 
         order_history_path = f'orders/{user_id}_order_history.txt'
         if not os.path.exists(order_history_path):
             open(order_history_path, 'w').close()
-        
+
         flash('Account created successfully!', 'success')
         return redirect(url_for('signin'))
 
     return render_template("signup.html")
 
-@app.route("/signin")
+@app.route("/signin", methods=['GET', 'POST'])
 def signin():
-   # account_folder = os.path.join(os.path.dirname(__file__), "accounts")
     if request.method == 'POST':
-        username = request.form['username']
+        email = request.form['email']
         password = request.form['password']
 
         for filename in os.listdir('accounts'):
             with open(f'accounts/{filename}', 'r') as file:
                 lines = file.readlines()
-                if lines[1].strip().split(': ')[1] == username and lines[2].strip().split(': ')[1] == password:
+                if lines[3].strip().split(': ')[1] == email and lines[2].strip().split(': ')[1] == password:
                     user_id = lines[0].strip().split(': ')[1]
                     session['user_id'] = user_id
-                    session['username'] = username
+                    session['email'] = email
                     flash('Logged in successfully!', 'success')
-                    return redirect(url_for('dashboard'))
+                    return redirect(url_for('order'))
 
-        flash('Invalid username or password', 'danger')
+        flash('Invalid email or password', 'danger')
 
     return render_template("signin.html")
+
+@app.route("/dashboard")
+def dashboard():
+    if 'user_id' in session:
+        return render_template("dashboard.html")
+    else:
+        return redirect(url_for('signin'))
 
 @app.route("/chat")
 def chat():
