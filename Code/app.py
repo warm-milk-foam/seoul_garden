@@ -1,10 +1,24 @@
 from flask import Flask, request, render_template, redirect, url_for, flash
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import os
 import uuid
 from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = "this_key_does_not_need_to_be_private_lmao"
+
+# login_manager = LoginManager()
+# login_manager.init_app(app)
+# login_manager.login_view = 'login'
+
+# class User(UserMixin):
+#     def __init__(self, user_id, username, password, email, date):
+#         self.id = user_id
+#         self.username = username
+#         self.password = password
+#         self.email = email
+#         self.email = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
+
 
 @app.route("/")
 def home():
@@ -34,6 +48,23 @@ def signup():
 
 @app.route("/signin")
 def signin():
+   # account_folder = os.path.join(os.path.dirname(__file__), "accounts")
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        for filename in os.listdir('accounts'):
+            with open(f'accounts/{filename}', 'r') as file:
+                lines = file.readlines()
+                if lines[1].strip().split(': ')[1] == username and lines[2].strip().split(': ')[1] == password:
+                    user_id = lines[0].strip().split(': ')[1]
+                    session['user_id'] = user_id
+                    session['username'] = username
+                    flash('Logged in successfully!', 'success')
+                    return redirect(url_for('dashboard'))
+
+        flash('Invalid username or password', 'danger')
+
     return render_template("signin.html")
 
 @app.route("/chat")
