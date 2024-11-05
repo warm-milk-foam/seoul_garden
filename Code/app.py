@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for, flash
+from flask import Flask, request, render_template, redirect, url_for, flash, session
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import os
 import uuid
@@ -35,7 +35,7 @@ def signup():
             open(order_history_path, 'w').close()
         
         flash('Account created successfully!', 'success')
-        return redirect(url_for('order'))
+        return redirect(url_for('signin'))
 
     return render_template("signup.html")
 
