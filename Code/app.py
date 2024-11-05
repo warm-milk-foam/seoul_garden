@@ -7,18 +7,11 @@ from datetime import datetime
 app = Flask(__name__)
 app.secret_key = "this_key_does_not_need_to_be_private_lmao"
 
-# login_manager = LoginManager()
-# login_manager.init_app(app)
-# login_manager.login_view = 'login'
-
-# class User(UserMixin):
-#     def __init__(self, user_id, username, password, email, date):
-#         self.id = user_id
-#         self.username = username
-#         self.password = password
-#         self.email = email
-#         self.email = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
-
+if not os.path.exists('accounts'):
+    os.makedirs('accounts')
+if not os.path.exists('orders'):
+    os.makedirs('orders')
+# emergency code i suppose
 
 @app.route("/")
 def home():
