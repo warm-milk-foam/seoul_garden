@@ -24,4 +24,5 @@ DISCLAIMER: This is just a local project and WILL NOT have real functionality in
 The project aims to automate:  
 1) Create and authenticate accounts 
 2) Use an AI model to promote and recommend deals, using information from order histories
-3) Order food online(?)
+3) Order food online(?)  
+5) All the data is persistent so the chatbot will still remember your information after finishing orders!
