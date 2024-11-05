@@ -39,13 +39,13 @@
             flex-direction: column;
             height: 80vh;
             margin: 20px;
-            border: 1px solid #ccc;
+            border: 1px solid #ccc; /*Where the conversation is helf */
             border-radius: 5px;
             overflow: hidden;
         }
         .chat-box {
             flex: 1;
-            overflow-y: auto;
+            overflow-y: auto;  /*basic properties for chat text */
             padding: 10px;
             background-color: #f9f9f9;
         }
@@ -102,6 +102,7 @@
          </div>
          <form id="chat-form" class="user-input">
              <input type="text" id="user-input" name="user_input" placeholder="Type your message here..." required>
+             <!--Whatever you enter into the input label will be the data sent to-->
              <button type="submit">Send</button>
          </form>
      </div>
@@ -156,7 +157,7 @@
                  console.error('Error:', error);
              });
  
-             // Clear the input field
+             // Clear the input field after the user input is sent
              document.getElementById('user-input').value = '';
          });
      </script>

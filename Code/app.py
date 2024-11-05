@@ -3,7 +3,8 @@ import os
 import uuid
 from datetime import datetime
 #specifically for AI
-import subprocess, jsonify
+from flask import jsonify
+import subprocess
 
 def chatbot_response(user_input, model_name="llama3.2"):
     # Use subprocess to run the Ollama CLI command
@@ -15,17 +16,19 @@ def chatbot_response(user_input, model_name="llama3.2"):
 app = Flask(__name__)
 app.secret_key = "this_key_does_not_need_to_be_private_lmao"
 
+# The code to create paths IF THEY DO NOT exist, but typically would
 if not os.path.exists('accounts'):
     os.makedirs('accounts')
 if not os.path.exists('orders'):
     os.makedirs('orders')
 
+
 @app.route("/")
-def home():
+def home(): # home page
     return render_template("index.html")
 
 @app.route("/signup", methods=['GET', 'POST'])
-def signup():
+def signup(): # signup page
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -66,7 +69,7 @@ def signin():
 
     return render_template("signin.html")
 
-@app.route("/chat")
+@app.route("/chat", methods=["GET", "POST"]) # we need the methods to GET messages from the bot and POST messages to it
 def chat():
     if 'user_id' not in session:
         flash('You need to be logged in to access this page.', 'danger')
