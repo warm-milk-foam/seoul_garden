@@ -22,6 +22,14 @@ def signup():
         account_info = f"User ID: {user_id}\nUsername: {username}\nPassword: {password}\nCreated At: {timestamp}\n"
         with open(f'accounts/{user_id}_account.txt', 'w') as file:
             file.write(account_info)
+
+        order_history_path = f'orders/{user_id}_order_history.txt'
+        if not os.path.exists(order_history_path):
+            open(order_history_path, 'w').close()
+        
+        flash('Account created successfully!', 'success')
+        return redirect(url_for('index'))
+
     return render_template("signup.html")
 
 @app.route("/signin")
