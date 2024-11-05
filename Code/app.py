@@ -1,14 +1,21 @@
-from flask import Flask, render_template, request
-import datetime
+from flask import Flask, request, render_template, redirect, url_for, flash
+import os
+import uuid
+from datetime import datetime
 
 app = Flask(__name__)
+app.secret_key = "this_key_does_not_need_to_be_private_lmao"
 
 @app.route("/")
 def home():
     return render_template("index.html")
 
-@app.route("/signup")
+@app.route("/signup", methods=['GET', 'POST'])
 def signup():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        email = request.form['email']
     return render_template("signup.html")
 
 @app.route("/chat")
