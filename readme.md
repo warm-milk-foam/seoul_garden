@@ -21,6 +21,7 @@ Credits to:
 The Flask project attempts to simulate an experience ordering food from a restaurant with an AI chatbot.  
 DISCLAIMER: This is just a local project and WILL NOT have real functionality in ordering actual food. It can only be accessed by the person running it and will be inaccessible to others on the internet.  
   
+The project aims to automate:  
 1) Create and authenticate accounts 
-2) Use an AI model to promote and give suggestions on deals, using information from order histories
-3) Order food online
+2) Use an AI model to promote and recommend deals, using information from order histories
+3) Order food online(?)
