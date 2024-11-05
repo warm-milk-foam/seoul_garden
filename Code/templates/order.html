@@ -36,10 +36,19 @@
          background-color: #04AA6D;
          color: white;
          }
+         .user-info {
+            margin: 20px;
+         }
+        .user-info h2 {
+            margin-bottom: 10px;
+         }
+        .user-info p {
+            margin: 5px 0;
+         }
       </style>
    </head>
    <body>
-      <img src="menu.jpg" width="200" height="300">
+      
       <div class="topnav">
          <a class="active" href="/">Home</a>
          <a href="/signup">Sign up</a>
@@ -49,5 +58,12 @@
          <a href="/account">Account</a>
       </div>
       <h1 class="text">Ordering page</h1>
+      <div class="user-info">
+         <h2>Account Information</h2>
+         <p><strong>User ID:</strong> {{ user_info.user_id }}</p>
+         <p><strong>Username:</strong> {{ user_info.username }}</p>
+         <p><strong>Email:</strong> {{ user_info.email }}</p>
+         <p><strong>Created At:</strong> {{ user_info.created_at }}</p>
+     </div>
    </body>
 </html>

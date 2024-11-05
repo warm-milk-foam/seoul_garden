@@ -75,8 +75,20 @@ def order():
 def account():
     if 'user_id' not in session:
         flash('You need to be logged in to access this page.', 'danger')
-        return redirect(url_for('signin'))    
-    return render_template("account.html")
+        return redirect(url_for('signin'))
+    
+    user_id = session['user_id']
+    user_info = {}
+
+    with open(f'accounts/{user_id}_account.txt', 'r') as file:
+        lines = file.readlines()
+        user_info['user_id'] = lines[0].strip().split(': ')[1]
+        user_info['username'] = lines[1].strip().split(': ')[1]
+        user_info['email'] = lines[3].strip().split(': ')[1]
+        user_info['created_at'] = lines[4].strip().split(': ')[1]
+
+    return render_template("account.html", user_info=user_info)
+    
 
 if __name__ == "__main__":
     app.run(debug=True)

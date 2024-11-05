@@ -47,11 +47,12 @@
          <a href="/account">Account</a>
       </div>
       <h1 class="text">Account info</h1>
-      <h3 class="text"></h3>
-      
-      <h3 class="text"></h3>
-
-      <h3 class="text"></h3>
+      <div class="user-info">
+        <p><strong>User ID:</strong> {{ user_info.user_id }}</p>
+        <p><strong>Username:</strong> {{ user_info.username }}</p>
+        <p><strong>Email:</strong> {{ user_info.email }}</p>
+        <p><strong>Created At:</strong> {{ user_info.created_at }}</p>
+      </div>
 
    </body>
 </html>
