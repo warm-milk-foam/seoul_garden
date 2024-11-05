@@ -2,7 +2,14 @@
 Students of AWS Accelerator 2024  
 By Ingo, Liu JunHao, Samuel Koh, Gabriel Tang, Mikail Jnr and Jeniece Tham  
 
-This respository is the code we wrote for the Seoul Garden challenge statement 
+This respository is the code we wrote for the Seoul Garden challenge statement  
+
+To run the experience, clone the repository and run the app.py file with  
+```
+python3 app.py
+```
+to the start the Flask application.  
+
 
 # Features
 The Flask project attempts to simulate an experience ordering food from a restaurant with a chatbot  
