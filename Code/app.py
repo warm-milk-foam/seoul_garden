@@ -57,23 +57,25 @@ def signin():
 
     return render_template("signin.html")
 
-@app.route("/dashboard")
-def dashboard():
-    if 'user_id' in session:
-        return render_template("dashboard.html")
-    else:
-        return redirect(url_for('signin'))
-
 @app.route("/chat")
 def chat():
+    if 'user_id' not in session:
+        flash('You need to be logged in to access this page.', 'danger')
+        return redirect(url_for('signin'))    
     return render_template("chat.html")
 
 @app.route("/order")
 def order():
+    if 'user_id' not in session:
+        flash('You need to be logged in to access this page.', 'danger')
+        return redirect(url_for('signin'))    
     return render_template("order.html")
 
 @app.route("/account")
 def account():
+    if 'user_id' not in session:
+        flash('You need to be logged in to access this page.', 'danger')
+        return redirect(url_for('signin'))    
     return render_template("account.html")
 
 if __name__ == "__main__":
