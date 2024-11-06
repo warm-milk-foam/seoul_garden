@@ -45,6 +45,33 @@
         .user-info p {
             margin: 5px 0;
          }
+         body {
+                font-family: 'Roboto', sans-serif;
+         }
+         .menu {
+               width: 55%;
+               flex-direction: column;
+               align-items: flex-start;
+               padding: 40px;
+               background-color: #f1f1f1;
+               align-content: baseline;
+         }
+
+         .order-item{
+               display: flex;
+               flex-direction: row;
+               align-items: center;
+               padding: 20px;
+               margin:20px;
+               background-color: grey;
+               border-radius: 10px;
+               justify-content: space-between;
+         }
+         .image{
+               height: 100px;
+               width: 100px;
+               overflow: hidden;
+         }
       </style>
    </head>
    <body>
@@ -70,5 +97,38 @@
          {% endif %}
          {% endwith %}   
      </div>
+
+     <div class="menu">
+      <div class="order-item">
+          <img src="{{ url_for('static', filename='images/chicken rice.jpg') }}" class="image">
+          <h3>Chicken rice</h3>
+          <h3>Price: $12.50<h3>
+      </div>
+      <div class="order-item">
+          <img src="{{ url_for('static', filename='images/avocado toast.jpg') }}" class="image">
+          <h3>Avocado toast</h3>
+          <h3>Price: $7.50<h3>
+      </div>
+      <div class="order-item">
+          <img src="{{ url_for('static', filename='images/chicken casear salad.jpg') }}" class="image">
+          <h3>Chicken Casear salad</h3>
+          <h3>Price: $9.90<h3>
+      </div>
+      <div class="order-item">
+          <img src="{{ url_for('static', filename='images/chicken.jpg') }}" class="image">
+          <h3>Kung Pao Chicken</h3>
+          <h3>Price: $12.00<h3>
+      </div>
+      <div class="order-item">
+          <img src="{{ url_for('static', filename='images/pasta.jpg') }}" class="image">
+          <h3>Pasta Alfredo</h3>
+          <h3>Price: $11.75<h3>
+      </div>
+      <div class="order-item">
+          <img src="{{ url_for('static', filename='images/rice.jpg') }}" class="image">
+          <h3>Plain rice</h3>
+          <h3>Price: $1.50<h3>
+      </div>
+  </div>
    </body>
 </html>
