@@ -33,17 +33,18 @@ def signup(): # signup page
         username = request.form['username']
         password = request.form['password']
         email = request.form['email']
-        user_id = str(uuid.uuid4())
+        user_id = str(uuid.uuid4()) # generates a unqiue id
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         account_info = f"User ID: {user_id}\nUsername: {username}\nPassword: {password}\nEmail: {email}\nCreated At: {timestamp}\n"
         with open(f'accounts/{user_id}_account.txt', 'w') as file:
             file.write(account_info)
+            # saves the account data locally
 
         order_history_path = f'orders/{user_id}_order_history.txt'
         if not os.path.exists(order_history_path):
             open(order_history_path, 'w').close()
-
+            # creates the order history for the new account (which will be empty of course)
         flash('Account created successfully!', 'success')
         return redirect(url_for('signin'))
 
@@ -56,28 +57,30 @@ def signin():
         password = request.form['password']
 
         for filename in os.listdir('accounts'):
-            with open(f'accounts/{filename}', 'r') as file:
-                lines = file.readlines()
+            with open(f'accounts/{filename}', 'r') as file: # read the accounts directory
+                lines = file.readlines() # read everything
                 if lines[3].strip().split(': ')[1] == email and lines[2].strip().split(': ')[1] == password:
+                    # get the Email and password section
                     user_id = lines[0].strip().split(': ')[1]
-                    session['user_id'] = user_id
+                    # get the user id
+                    session['user_id'] = user_id # sets up the session so that the server knows that the person has signed in with an account
                     session['email'] = email
-                    flash('Logged in successfully!', 'success')
+                    flash('Logged in successfully!', 'success') # authenticates
                     return redirect(url_for('order'))
 
-        flash('Invalid email or password', 'danger')
+        flash('Invalid email or password', 'danger') # if the password is invalid
 
     return render_template("signin.html")
 
 @app.route("/chat", methods=["GET", "POST"]) # we need the methods to GET messages from the bot and POST messages to it
 def chat():
-    if 'user_id' not in session:
+    if 'user_id' not in session: # the session is only granted by signin() function, so it checks for this
         flash('You need to be logged in to access this page.', 'danger')
-        return redirect(url_for('signin'))    
+        return redirect(url_for('signin'))     # flask session carrying bruh
     if request.method == "POST":
-        user_input = request.form["user_input"]
-        response = chatbot_response(user_input)
-        return jsonify({"response": response})
+        user_input = request.form["user_input"] 
+        response = chatbot_response(user_input) # calls the function at the start
+        return jsonify({"response": response}) # jsons the response and POSTs it
     return render_template("chat.html")
 
 @app.route("/order")
