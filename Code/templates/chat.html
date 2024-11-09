@@ -116,50 +116,45 @@
       {% endif %}
       {% endwith %}   
 
-
-
-
-
-
       <script>
-         document.getElementById('chat-form').addEventListener('submit', function(event) {
-             event.preventDefault();
-             const userInput = document.getElementById('user-input').value;
-             const chatBox = document.getElementById('chat-box');
- 
-             // Display user input
-             const userMessage = document.createElement('div');
-             userMessage.className = 'chat-message user';
-             userMessage.textContent = userInput;
-             chatBox.appendChild(userMessage);
-             chatBox.scrollTop = chatBox.scrollHeight;
- 
-             // Send user input to the server
-             fetch('/chat', {
-                 method: 'POST',
-                 headers: {
-                     'Content-Type': 'application/x-www-form-urlencoded',
-                 },
-                 body: new URLSearchParams({
-                     user_input: userInput
-                 })
-             })
-             .then(response => response.json())
-             .then(data => {
-                 // Display chatbot response
-                 const botMessage = document.createElement('div');
-                 botMessage.className = 'chat-message bot';
-                 botMessage.textContent = data.response;
-                 chatBox.appendChild(botMessage);
-                 chatBox.scrollTop = chatBox.scrollHeight;
-             })
-             .catch(error => {
-                 console.error('Error:', error);
-             });
- 
-             // Clear the input field after the user input is sent
-             document.getElementById('user-input').value = '';
-         });
-     </script>
+        document.getElementById('chat-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const userInput = document.getElementById('user-input').value;
+            const chatBox = document.getElementById('chat-box');
+
+            // Display user input
+            const userMessage = document.createElement('div');
+            userMessage.className = 'chat-message user';
+            userMessage.textContent = userInput;
+            chatBox.appendChild(userMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Send user input to the server
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    user_input: userInput
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display chatbot response
+                const botMessage = document.createElement('div');
+                botMessage.className = 'chat-message bot';
+                botMessage.textContent = data.response;
+                chatBox.appendChild(botMessage);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+            // Clear the input field
+            document.getElementById('user-input').value = '';
+        });
+    </script>
    </body>
 </html>

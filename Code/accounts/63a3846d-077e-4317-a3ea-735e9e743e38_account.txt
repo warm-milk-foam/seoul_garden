@@ -1,5 +1,0 @@
-User ID: 63a3846d-077e-4317-a3ea-735e9e743e38
-Username: test
-Password: test123
-Email: test@gmail.com
-Created At: 2024-11-07 18:59:05

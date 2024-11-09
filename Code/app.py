@@ -6,12 +6,38 @@ from datetime import datetime
 from flask import jsonify
 import subprocess
 
-def chatbot_response(user_input, model_name="llama3.2"):
-    # Use subprocess to run the Ollama CLI command
-    command = f"ollama run {model_name} --input '{user_input}'"
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
-    response = result.stdout.strip()
+# Function to initialize the Ollama model
+def initialize_model(model_name="llama3.2"):
+    command = f"ollama run {model_name}"
+    process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    stdout, stderr = process.communicate()
+
+    if process.returncode != 0:
+        print(f"Error initializing model: {stderr}")
+        return False
+
+    print(f"Model initialized: {stdout}")
+    return True
+
+
+
+# Function to interact with the Ollama model
+def chatbot_response(user_input):
+    global model_process
+
+    # Initialize the model if not already initialized
+    if model_process is None:
+        initialize_model()
+
+    # Send the user input to the model's stdin
+    model_process.stdin.write(user_input + "\n")
+    model_process.stdin.flush()
+
+    # Read the response from the model's stdout
+    response = model_process.stdout.readline().strip()
+
     return response
+
 
 app = Flask(__name__)
 app.secret_key = "this_key_does_not_need_to_be_private_lmao"
@@ -21,6 +47,8 @@ if not os.path.exists('accounts'):
     os.makedirs('accounts')
 if not os.path.exists('orders'):
     os.makedirs('orders')
+if not os.path.exists('chat_history'):
+    os.makedirs('chat_history')
 
 
 @app.route("/")
@@ -77,11 +105,31 @@ def chat():
     if 'user_id' not in session: # the session is only granted by signin() function, so it checks for this
         flash('You need to be logged in to access this page.', 'danger')
         return redirect(url_for('signin'))     # flask session carrying bruh
+    
+    user_id = session['user_id']
+    chat_history_path = f'chat_history/{user_id}_chat_history.txt'
+    with open(f'chat_history/{user_id}_chat_history.txt', 'w') as file:
+        file.write("Recommendations: ")
+
     if request.method == "POST":
-        user_input = request.form["user_input"] 
-        response = chatbot_response(user_input) # calls the function at the start
-        return jsonify({"response": response}) # jsons the response and POSTs it
-    return render_template("chat.html")
+        user_input = request.form["user_input"]
+        response = chatbot_response(user_input)
+
+        # Save the chat history
+        with open(chat_history_path, 'a') as file:
+            file.write(f"User: {user_input}\n")
+            file.write(f"Bot: {response}\n")
+
+        return jsonify({"response": response})
+
+    # Load the chat history
+    chat_history = []
+    if os.path.exists(chat_history_path):
+        with open(chat_history_path, 'r') as file:
+            chat_history = file.readlines()
+
+    return render_template("chat.html", chat_history=chat_history)
+
 
 @app.route("/order")
 def order():
