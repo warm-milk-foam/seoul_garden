@@ -4,40 +4,7 @@ import uuid
 from datetime import datetime
 #specifically for AI
 from flask import jsonify
-import subprocess
-
-model_process = None
-
-# Function to initialize the Ollama model
-def initialize_model(model_name="llama3.2"):
-    command = f"ollama run {model_name}"
-    process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    stdout, stderr = process.communicate()
-
-    if process.returncode != 0:
-        print(f"Error initializing model: {stderr}")
-        return False
-
-    print(f"Model initialized: {stdout}")
-    return True
-
-# Function to interact with the Ollama model
-def chatbot_response(user_input):
-    global model_process
-
-    # Initialize the model if not already initialized
-    if model_process is None:
-        initialize_model()
-
-    # Send the user input to the model's stdin
-    model_process.stdin.write(user_input + "\n")
-    model_process.stdin.flush()
-
-    # Read the response from the model's stdout
-    response = model_process.stdout.readline().strip()
-
-    return response
-
+import requests
 
 app = Flask(__name__)
 app.secret_key = "this_key_does_not_need_to_be_private_lmao"
@@ -127,8 +94,28 @@ def chat():
     if os.path.exists(chat_history_path):
         with open(chat_history_path, 'r') as file:
             chat_history = file.readlines()
+
     print(f"Chat history for user {user_id}: {chat_history}")
     return render_template("chat.html", chat_history=chat_history)
+
+
+def chatbot_response(user_input):
+
+    api_url = 'http://localhost:11434'  # this is locally btw
+    response = requests.post(api_url, json={'input': user_input})
+    payload = {
+        "model": "llama3.2",
+        "prompt": user_input
+    }
+    response = requests.post(api_url, json=payload)
+    print(f"API Response Status Code: {response.status_code}")
+    print(f"API Response Content: {response.content}")
+    if response.status_code == 200:
+        return response.json().get('response', 'No response from the model.')
+    else:
+        return 'Error: Unable to get a response from the model.'
+    
+    # error because it cannot be found by the model
 
 
 @app.route("/order")
