@@ -6,6 +6,8 @@ from datetime import datetime
 from flask import jsonify
 import subprocess
 
+model_process = None
+
 # Function to initialize the Ollama model
 def initialize_model(model_name="llama3.2"):
     command = f"ollama run {model_name}"
@@ -18,8 +20,6 @@ def initialize_model(model_name="llama3.2"):
 
     print(f"Model initialized: {stdout}")
     return True
-
-
 
 # Function to interact with the Ollama model
 def chatbot_response(user_input):
@@ -109,7 +109,7 @@ def chat():
     user_id = session['user_id']
     chat_history_path = f'chat_history/{user_id}_chat_history.txt'
     with open(f'chat_history/{user_id}_chat_history.txt', 'w') as file:
-        file.write("Recommendations: ")
+        file.write("Recommendations: KungPao Chicken, Chicken rice, Buffet 1 for 1 special ")
 
     if request.method == "POST":
         user_input = request.form["user_input"]
@@ -121,13 +121,13 @@ def chat():
             file.write(f"Bot: {response}\n")
 
         return jsonify({"response": response})
-
+    
     # Load the chat history
     chat_history = []
     if os.path.exists(chat_history_path):
         with open(chat_history_path, 'r') as file:
             chat_history = file.readlines()
-
+    print(f"Chat history for user {user_id}: {chat_history}")
     return render_template("chat.html", chat_history=chat_history)
 
 
@@ -137,17 +137,11 @@ def order():
         flash('You need to be logged in to access this page.', 'danger')
         return redirect(url_for('signin'))    
         
-    user_id = session['user_id']
-    user_info = {}
+    user_id = session['user_id'] # use this later to add it into the order history
+    order_history_path = f'orders/{user_id}_order_history.txt'
 
-    with open(f'accounts/{user_id}_account.txt', 'r') as file:
-        lines = file.readlines()
-        user_info['user_id'] = lines[0].strip().split(': ')[1]
-        user_info['username'] = lines[1].strip().split(': ')[1]
-        user_info['email'] = lines[3].strip().split(': ')[1]
-        user_info['created_at'] = lines[4].strip().split(': ')[1]
 
-    return render_template("order.html", user_info=user_info)
+    return render_template("order.html")
 
 @app.route("/account")
 def account():
