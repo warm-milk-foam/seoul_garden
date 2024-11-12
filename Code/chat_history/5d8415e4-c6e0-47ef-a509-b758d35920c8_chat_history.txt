@@ -1,2 +1,1 @@
-Recommendations: KungPao Chicken, Chicken rice, Buffet 1 for 1 special User: hello?
-Bot: Error: Unable to get a response from the model.
+Recommendations: KungPao Chicken, Chicken rice, Buffet 1 for 1 special 

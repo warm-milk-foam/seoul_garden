@@ -103,11 +103,12 @@ def chat():
 def chatbot_response(user_input):
 
     api_url = 'http://localhost:11434'  # this is locally btw
-    response = requests.post(api_url, json={'input': user_input})
+    # response = requests.post(api_url, json={'input': user_input})
     payload = {
         "model": "llama3.2",
         "prompt": user_input
     }
+    print(f"Payload: {payload}")
     response = requests.post(api_url, json=payload)
     print(f"API Response Status Code: {response.status_code}")
     print(f"API Response Content: {response.content}")

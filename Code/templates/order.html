@@ -8,7 +8,6 @@
          @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
          body {
          font-family: 'Roboto', sans-serif;
-         
          }
          form {
             padding-left: 30px;
@@ -56,7 +55,17 @@
                background-color: #f1f1f1;
                align-content: baseline;
          }
-
+         .ordering {
+               width: 40%;
+               flex-direction: column;
+               align-items: flex-start;
+               padding: 40px;
+               background-color: #f1f1f1;
+               align-content: baseline;
+         }
+         .tabs{
+            display:flex;
+         }
          .order-item{
                display: flex;
                flex-direction: row;
@@ -66,16 +75,49 @@
                background-color: grey;
                border-radius: 10px;
                justify-content: space-between;
+               cursor: pointer;
+         }
+         .order-item:hover{
+            background-color: #999999;
+            box-shadow: 5px 5px 10px;
          }
          .image{
                height: 100px;
                width: 100px;
                overflow: hidden;
          }
+         .ordered-item { /*After the item was ordered, it appears on the right */
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 10px;
+            margin: 10px;
+            background-color: #ddd;
+            border-radius: 5px;
+            border: 2px solid black;
+         }
+         .delete_button{ /* The button to delete items from the order list */
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            width: 30px; /* Adjusted size to better fit the icon */
+            height: 30px; /* Adjusted size to better fit the icon */
+            border: none;
+            cursor: pointer;
+            background-color: transparent; /* Ensure no background color */
+            background-image: url('https://img.icons8.com/?size=100&id=nerFBdXcYDve&format=png&color=ff0000'); /* Make sure this URL is correct and accessible */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: transform 0.3s;
+         }
+         .delte_button:hover {
+            transform: scale(1.1); /* Slightly increase size on hover */
+         }       
       </style>
    </head>
    <body>
-      
+
       <div class="topnav">
          <a class="active" href="/">Home</a>
          <a href="/signup">Sign up</a>
@@ -86,49 +128,83 @@
       </div>
       <h1 class="text">Ordering page</h1>
       <div class="user-info">
-
          {% with messages = get_flashed_messages() %}
          {% if messages %}
-            
+
              {% for message in messages %}
                  <p class="flash">{{ message }}</li>
              {% endfor %}
-      
+
          {% endif %}
-         {% endwith %}   
+         {% endwith %}
      </div>
 
-     <div class="menu">
-      <div class="order-item">
-          <img src="{{ url_for('static', filename='images/chicken rice.jpg') }}" class="image">
-          <h3>Chicken rice</h3>
-          <h3>Price: $12.50<h3>
-      </div>
-      <div class="order-item">
-          <img src="{{ url_for('static', filename='images/avocado toast.jpg') }}" class="image">
-          <h3>Avocado toast</h3>
-          <h3>Price: $7.50<h3>
-      </div>
-      <div class="order-item">
-          <img src="{{ url_for('static', filename='images/chicken casear salad.jpg') }}" class="image">
-          <h3>Chicken Casear salad</h3>
-          <h3>Price: $9.90<h3>
-      </div>
-      <div class="order-item">
-          <img src="{{ url_for('static', filename='images/chicken.jpg') }}" class="image">
-          <h3>Kung Pao Chicken</h3>
-          <h3>Price: $12.00<h3>
-      </div>
-      <div class="order-item">
-          <img src="{{ url_for('static', filename='images/pasta.jpg') }}" class="image">
-          <h3>Pasta Alfredo</h3>
-          <h3>Price: $11.75<h3>
-      </div>
-      <div class="order-item">
-          <img src="{{ url_for('static', filename='images/rice.jpg') }}" class="image">
-          <h3>Plain rice</h3>
-          <h3>Price: $1.50<h3>
-      </div>
-  </div>
+    <div class="tabs">
+        <div class="menu">
+            <div class="order-item" id="1" data-name="Chicken rice" data-price="12.50">
+                <img src="{{ url_for('static', filename='images/chicken rice.jpg') }}" class="image">
+                <h3>Chicken rice</h3>
+                <h3>Price: $12.50</h3>
+            </div>
+            <div class="order-item" id="2" data-name="Avocado toast" data-price="7.50">
+                <img src="{{ url_for('static', filename='images/avocado toast.jpg') }}" class="image">
+                <h3>Avocado toast</h3>
+                <h3>Price: $7.50</h3>
+            </div>
+              <div class="order-item" id="3" data-name="Chicken Casear salad" data-price="9.90">
+                  <img src="{{ url_for('static', filename='images/chicken casear salad.jpg') }}" class="image">
+                  <h3>Chicken Casear salad</h3>
+                  <h3>Price: $9.90</h3>
+              </div>
+              <div class="order-item" id="4" data-name="Kung Pao Chicken" data-price="12.00">
+                  <img src="{{ url_for('static', filename='images/chicken.jpg') }}" class="image">
+                  <h3>Kung Pao Chicken</h3>
+                  <h3>Price: $12.00</h3>
+              </div>
+              <div class="order-item" id="5" data-name="Pasta Alfredo" data-price="11.75">
+                  <img src="{{ url_for('static', filename='images/pasta.jpg') }}" class="image">
+                  <h3>Pasta Alfredo</h3>
+                  <h3>Price: $11.75</h3>
+              </div>
+              <div class="order-item" id="6" data-name="Plain rice" data-price="1.50">
+                  <img src="{{ url_for('static', filename='images/rice.jpg') }}" class="image">
+                  <h3>Plain rice</h3>
+                  <h3>Price: $1.50</h3>
+              </div>
+        </div>
+        <div class="ordering">
+            <h3>Order list</h3>
+            <div id="order-list"></div>
+        </div>
+    </div>
+
+    <script>
+        // AI did in fact cook
+        // Now i know about custom data values
+        document.addEventListener('DOMContentLoaded', function() {
+            const orderItems = document.querySelectorAll('.order-item');
+            const orderList = document.getElementById('order-list');
+
+            orderItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const name = item.getAttribute('data-name');
+                    const price = item.getAttribute('data-price');
+
+                    const orderListItem = document.createElement('div');
+                    orderListItem.classList.add('ordered-item');
+                    orderListItem.innerHTML = `
+                    <div>
+                        <h3>${name}</h3>
+                        <h3>Price: $${price}</h3>
+                    </div>
+                    `;
+
+                    orderList.appendChild(orderListItem);
+                });
+            });
+        });
+    </script>
+
    </body>
 </html>
+
