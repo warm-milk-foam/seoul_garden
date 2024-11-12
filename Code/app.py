@@ -10,12 +10,13 @@ app = Flask(__name__)
 app.secret_key = "this_key_does_not_need_to_be_private_lmao"
 
 # The code to create paths IF THEY DO NOT exist, but typically would
-if not os.path.exists('accounts'):
-    os.makedirs('accounts')
-if not os.path.exists('orders'):
-    os.makedirs('orders')
-if not os.path.exists('chat_history'):
-    os.makedirs('chat_history')
+# error, faulty because the program relies on the stuff outside the code
+# if not os.path.exists('accounts'):
+#     os.makedirs('accounts')
+# if not os.path.exists('orders'):
+#     os.makedirs('orders')
+# if not os.path.exists('chat_history'):
+#     os.makedirs('chat_history')
 
 
 @app.route("/")
