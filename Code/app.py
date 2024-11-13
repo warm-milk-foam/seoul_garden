@@ -126,13 +126,35 @@ def chatbot_response(user_input):
 def order():
     if 'user_id' not in session:
         flash('You need to be logged in to access this page.', 'danger')
-        return redirect(url_for('signin'))    
-        
+        return redirect(url_for('signin'))
+
     user_id = session['user_id'] # use this later to add it into the order history
     order_history_path = f'orders/{user_id}_order_history.txt'
 
-
     return render_template("order.html")
+
+@app.route("/submit_order", methods=['POST'])
+def submit_order():
+    if 'user_id' not in session:
+        flash('You need to be logged in to access this page.', 'danger')
+        return redirect(url_for('signin'))
+
+    user_id = session['user_id']
+    order_history_path = f'orders/{user_id}_order_history.txt'
+
+    # Read the order items from the form data
+    order_items = request.form.getlist('order_item')
+
+    # Save the order items to the order history file
+    with open(order_history_path, 'a') as file:
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        file.write(f"Order placed at: {timestamp}\n")
+        for item in order_items:
+            file.write(f"{item}\n")
+        file.write("\n")
+
+    flash('Order submitted successfully!', 'success')
+    return redirect(url_for('order'))
 
 @app.route("/account")
 def account():
