@@ -21,6 +21,15 @@ app.secret_key = "this_key_does_not_need_to_be_private_lmao"
 #     os.makedirs('chat_history')
 def setup():
     #prompt the ollama model and give it instructions
+    response = ollama.chat(model='llama3.2', messages=[
+        {
+            'role': 'user',
+            'content': """You will act as a Chatbot for a restaurant called Seoul Garden.
+              Your job is to enlighten the user on deals: Recommendations: KungPao Chicken, Chicken rice, Buffet 1 for 1 special
+              Additionally, you should attempt to guide the user throughout the website, particularly on the order tab.
+              To order food, they must click on their item and click the submit button to send requests """
+        },
+    ])
     pass
 @app.route("/")
 def home(): # home page
@@ -108,11 +117,6 @@ def chatbot_response(user_input):
     # user_id = session['user_id']
     # Use the ollama module to get the chatbot response
     # chat_history_path = f'chat_history/{user_id}_chat_history.txt'
-    payload = {
-        "model": "llama3.2",
-       # "messages":
-        "prompt": user_input
-    }
     response = ollama.chat(model='llama3.2', messages=[
         {
             'role': 'user',
@@ -125,7 +129,7 @@ def chatbot_response(user_input):
     # error because it cannot be found by the model
 
 
-@app.route("/order")
+@app.route("/order", methods=['POST'])
 def order():
     if 'user_id' not in session:
         flash('You need to be logged in to access this page.', 'danger')
@@ -136,7 +140,7 @@ def order():
 
     return render_template("order.html")
 
-@app.route("/submit_order", methods=['POST'])
+@app.route("/submit_order")
 def submit_order():
     if 'user_id' not in session:
         flash('You need to be logged in to access this page.', 'danger')
@@ -146,7 +150,8 @@ def submit_order():
     order_history_path = f'orders/{user_id}_order_history.txt'
 
     # Read the order items from the form data
-    order_items = request.form.getlist('order_item')
+    order_items = request.data
+
 
     if not order_items:
         flash('No items in the order list.', 'danger')
