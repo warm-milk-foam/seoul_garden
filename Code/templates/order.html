@@ -55,7 +55,7 @@
                background-color: #f1f1f1;
                align-content: baseline;
          }
-         .ordering {
+         .ordering { /*ordering is the order list on the right, the container where the ordered items ares */
                width: 40%;
                flex-direction: column;
                align-items: flex-start;
@@ -115,6 +115,20 @@
          .delete_button:hover {
             transform: scale(1.1); /* Slightly increase size on hover */
          }       
+
+         .submit-button { /*self explanatory, when clicked, will delete all the items in the 'ordered' container */
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+         }
+         .submit-button:hover {
+            background-color: #038a5f;
+         }
       </style>
    </head>
    <body>
@@ -176,6 +190,11 @@
         <div class="ordering">
             <h3>Order list</h3>
             <div id="order-list"></div>
+            
+            <form id="order-form" method="POST" action="{{ url_for('submit_order') }}">
+                <button type="submit" class="submit-button">Submit Order</button>
+            </form>
+
         </div>
     </div>
 

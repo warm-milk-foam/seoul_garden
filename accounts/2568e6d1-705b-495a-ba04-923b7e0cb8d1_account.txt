@@ -1,5 +1,0 @@
-User ID: 2568e6d1-705b-495a-ba04-923b7e0cb8d1
-Username: test
-Password: test
-Email: test
-Created At: 2024-11-09 20:05:49
