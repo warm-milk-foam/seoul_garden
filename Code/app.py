@@ -105,6 +105,8 @@ def chatbot_response(user_input):
     api_url = 'http://localhost:11434'  # this is locally btw
     # response = requests.post(api_url, json={'input': user_input})
     payload = {
+# apparently i need a user key to authenticate 
+
         "model": "llama3.2",
         "prompt": user_input
     }
