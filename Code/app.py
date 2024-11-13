@@ -27,10 +27,13 @@ def setup():
             'content': """You will act as a Chatbot for a restaurant called Seoul Garden.
               Your job is to enlighten the user on deals: Recommendations: KungPao Chicken, Chicken rice, Buffet 1 for 1 special
               Additionally, you should attempt to guide the user throughout the website, particularly on the order tab.
-              To order food, they must click on their item and click the submit button to send requests """
+              To order food, they must click on their item and click the submit button to send requests.
+               You start the job now. """
         },
     ])
-    pass
+
+
+
 @app.route("/")
 def home(): # home page
     return render_template("index.html")
@@ -129,7 +132,7 @@ def chatbot_response(user_input):
     # error because it cannot be found by the model
 
 
-@app.route("/order", methods=['POST'])
+@app.route("/order")
 def order():
     if 'user_id' not in session:
         flash('You need to be logged in to access this page.', 'danger')
@@ -189,4 +192,5 @@ def account():
     
 
 if __name__ == "__main__":
+    setup()
     app.run(debug=True, port=5000)
