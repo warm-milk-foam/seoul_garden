@@ -11,6 +11,8 @@ import ollama
 app = Flask(__name__)
 app.secret_key = "this_key_does_not_need_to_be_private_lmao"
 
+setup_instructions = ""
+
 # The code to create paths IF THEY DO NOT exist, but typically would
 # error, faulty because the program relies on the stuff outside the code
 # if not os.path.exists('accounts'):
@@ -95,7 +97,7 @@ def chat():
         file.write("Recommendations: KungPao Chicken, Chicken rice, Buffet 1 for 1 special ")
 
     if request.method == "POST":
-        user_input = request.form["user_input"]
+        user_input = request.form["user_input"] # this also does not work for some reason, probably the same reason as the  other
         response = chatbot_response(user_input)
 
         # Save the chat history
@@ -120,7 +122,12 @@ def chatbot_response(user_input):
     # user_id = session['user_id']
     # Use the ollama module to get the chatbot response
     # chat_history_path = f'chat_history/{user_id}_chat_history.txt'
+    global setup_instructions
     response = ollama.chat(model='llama3.2', messages=[
+        {
+            'role': 'system',
+            'content': setup_instructions
+        },
         {
             'role': 'user',
             'content': user_input
