@@ -6,6 +6,8 @@ from datetime import datetime
 from flask import jsonify
 import requests
 
+import ollama
+
 app = Flask(__name__)
 app.secret_key = "this_key_does_not_need_to_be_private_lmao"
 
@@ -17,8 +19,9 @@ app.secret_key = "this_key_does_not_need_to_be_private_lmao"
 #     os.makedirs('orders')
 # if not os.path.exists('chat_history'):
 #     os.makedirs('chat_history')
-
-
+def setup():
+    #prompt the ollama model and give it instructions
+    pass
 @app.route("/")
 def home(): # home page
     return render_template("index.html")
@@ -100,24 +103,24 @@ def chat():
     return render_template("chat.html", chat_history=chat_history)
 
 
+  
 def chatbot_response(user_input):
-
-    api_url = 'http://localhost:11434'  # this is locally btw
-    # response = requests.post(api_url, json={'input': user_input})
+    # user_id = session['user_id']
+    # Use the ollama module to get the chatbot response
+    # chat_history_path = f'chat_history/{user_id}_chat_history.txt'
     payload = {
-# apparently i need a user key to authenticate 
-
         "model": "llama3.2",
+       # "messages":
         "prompt": user_input
     }
-    print(f"Payload: {payload}")
-    response = requests.post(api_url, json=payload)
-    print(f"API Response Status Code: {response.status_code}")
-    print(f"API Response Content: {response.content}")
-    if response.status_code == 200:
-        return response.json().get('response', 'No response from the model.')
-    else:
-        return 'Error: Unable to get a response from the model.'
+    response = ollama.chat(model='llama3.2', messages=[
+        {
+            'role': 'user',
+            'content': user_input
+        },
+    ])
+    print(response)
+    return response['message']['content']
     
     # error because it cannot be found by the model
 
