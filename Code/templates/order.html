@@ -199,8 +199,6 @@
     </div>
 
     <script>
-        // AI did in fact cook
-        // Now i know about custom data values
         document.addEventListener('DOMContentLoaded', function() {
             const orderItems = document.querySelectorAll('.order-item');
             const orderList = document.getElementById('order-list');
@@ -210,6 +208,8 @@
                     const name = item.getAttribute('data-name');
                     const price = item.getAttribute('data-price');
 
+                    // console.log(`Adding item: ${name} - $${price}`);
+                    // the javascript code works
                     const orderListItem = document.createElement('div');
                     orderListItem.classList.add('ordered-item');
                     orderListItem.innerHTML = `
@@ -220,15 +220,18 @@
                     <div class="delete_button"></div>
                     <input type="hidden" name="order_item" value="${name} - $${price}">
                     `;
+                    console.log(orderListItem)
+                    // Add event listener to the delete button
                     const deleteButton = orderListItem.querySelector('.delete_button');
                     deleteButton.addEventListener('click', function(event) {
-                    event.stopPropagation(); // Prevent the click event from bubbling up to the parent element
-                    orderListItem.remove();
+                        event.stopPropagation(); // Prevent the click event from bubbling up to the parent element
+                        orderListItem.remove();
                     });
 
-
                     orderList.appendChild(orderListItem);
+
                 });
+                
             });
         });
     </script>
