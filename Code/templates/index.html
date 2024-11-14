@@ -102,6 +102,15 @@
         .center{
             text-align: center;
         }
+        .scroll{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width:80px;
+            height:45px;
+            transform: translateY(500px);
+        }
+
     </style>
 </head>
 <body>
@@ -118,6 +127,7 @@
         <h1 class="promo">INTERNATIONAL KOREAN GRILL & HOTPOT BUFFET</h1>
         <h1 class="promo">Chatbot website</h1>
     </div>
+    <img src="{{ url_for('static', filename='images/scroll-pic.png') }}" class="scroll">
     <div class="nice-background">
         <h1 class="text">What is this website?</h1>
         <p class="text">
@@ -126,8 +136,10 @@
             at our restaurants, saving time and you can do it at the comfort of your home without<br>
             having to be in-person!
         </p>
+       
     </div>
     <!--added-->
+
     <div class="poster">
         <h1>Looking for a place to hold a large event?</h1>
         <p>
