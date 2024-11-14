@@ -8,6 +8,9 @@
          @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
          body {
          font-family: 'Roboto', sans-serif;
+         background: url('/static/images/Background image 1.jpg') no-repeat center center fixed;
+         background-size: cover;
+
          }
          form {
             padding-left: 30px;
@@ -252,6 +255,14 @@
             <h3>Order list</h3>
             <div id="order-list"></div>
             <form id="order-form" method="POST" action="{{ url_for('submit_order') }}">
+                <label for="location">Dining location:</label><br>
+                <select name="lcoation" id="dining-location">
+                    <option value="volvo">Bugis Junction</option>
+                    <option value="saab">Marina Square</option>
+                    <option value="mercedes">Tampines Mall</option>
+                    <option value="audi">Northpoint City</option>
+                  </select>
+
                 <button type="submit" class="submit-button">Send order</button>
             </form>
 

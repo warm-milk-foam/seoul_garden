@@ -4,10 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Seoul Garden Chatbot</title>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
         body {
             font-family: 'Roboto', sans-serif;
+            background: url('/static/images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
             margin: 0;
             padding: 0;
         }
@@ -63,10 +66,42 @@
             color:black;
         }
         .nice-background{
+            transform: translateY(500px);
+            opacity: 95%;
             padding: 30px;
             background-color: #f6d484;
             border-radius: 30px;
+            margin: 20px auto;
+            max-width: 800px;
          }
+
+         .poster{
+            direction: column;
+            color:white;
+            background: #ff5d41;
+            max-width: 400px;
+            margin: 20px;
+            padding:20px;
+            box-shadow: 10px 10px 20px black;
+            border-radius: 20px;
+            transform: translateY(500px) translateX(150px);
+  
+        }
+        .poster2{
+            direction: column;
+            color:white;
+            background: #521a92;
+            max-width: 500px;
+            margin: 20px;
+            padding:20px;
+            box-shadow: 10px 10px 20px black;
+            border-radius: 20px;
+            transform: translateY(130px) translateX(630px);
+
+        }
+        .center{
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -79,11 +114,9 @@
         <a href="/account">Account</a>
     </div>
 
-    <div class="background-container">
-        <div class="text-overlay">
-            <h1 class="promo">INTERNATIONAL KOREAN GRILL & HOTPOT BUFFET</h1>
-            <h1 class="promo">Chatbot website</h1>
-        </div>
+    <div class="text-overlay">
+        <h1 class="promo">INTERNATIONAL KOREAN GRILL & HOTPOT BUFFET</h1>
+        <h1 class="promo">Chatbot website</h1>
     </div>
     <div class="nice-background">
         <h1 class="text">What is this website?</h1>
@@ -94,6 +127,29 @@
             having to be in-person!
         </p>
     </div>
+    <!--added-->
+    <div class="poster">
+        <h1>Looking for a place to hold a large event?</h1>
+        <p>
+            Are you looking for a convenient location to hold your event?
+        </p>
+        <p>
+            Do you require a dining place that can hold up to 156 people?
+        </p>
+        <p>
+            Or are you having a headache to find a place that can cater to all races?
+        </p>
+        <p>
+            You are looking at the right place! Seoul Garden is best suited halal grill & hotpot buffet restaurant that can hold up to 156 people at one- go with up to 6 outlets island- wide.
+        </p>
+    </div>
+
+    <div class="poster2">
+        <h1 class="center">Seoul Garden</h1>
+        <p>Seoul Garden Buffet (International Korean Grill & HotPot) restaurant chain, anchored in 6 countries of Asia, celebrates its 41st anniversary this 2nd Q 2024. Customers are those who want Korean and Asian flavours, wide variety of self-selection all you can eat buffet, 2 in 1 (smokeless grill and hotpot) dining experience. Most customers come in 2 or more as it is venue for celebrating all occasions with seating capacity ranging from 130 to 300 seats, depending on location.</p>
+        <p>Be part of the success developed over 40 years, emerging stronger year on year, with innovation and creation from the Franchisor.</p>
+    </div>
+    <!--added-->
 </body>
 </html>
 
