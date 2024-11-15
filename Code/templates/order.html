@@ -54,15 +54,17 @@
                flex-direction: column;
                align-items: flex-start;
                padding: 40px;
-               background-color: #f1f1f1;
+               background: linear-gradient(180deg, rgb(254, 255, 169) 0%, rgb(255, 255, 255) 100%);
                align-content: baseline;
+               border: 5px solid grey;
+               border-radius: 5px;
          }
          .ordering { /*ordering is the order list on the right, the container where the ordered items ares */
                width: 40%;
                flex-direction: column;
                align-items: flex-start;
                padding: 40px;
-               background-color: #f1f1f1;
+               background: linear-gradient(180deg, rgb(189, 223, 255) 0%, rgb(255, 255, 255) 100%);
                align-content: baseline;
          }
          .tabs{
@@ -90,7 +92,7 @@
             background-color: #999999;
             box-shadow: 5px 5px 10px;
             justify-content: space-between;
-            padding: 10px;
+            padding: 20px;
          }
          .image{
                height: 100px;
@@ -167,7 +169,7 @@
             padding:20px 30px;
             text-align: center;
             background-color: #ddd;
-            color:#23ff23;
+            color:black;
             max-width: 300px;
             transform: translateX(500px);
             font-weight: bold;
@@ -202,6 +204,7 @@
 
     <div class="tabs">
         <div class="menu">
+            <h2>Menu</h2>
             <div class="order-item" id="1" data-name="Chicken rice" data-price="12.50">
                 <img src="{{ url_for('static', filename='images/chicken rice.jpg') }}" class="image">
                 <div class="order-description">
