@@ -7,14 +7,29 @@
       <style>
          @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
          body {
-         font-family: 'Roboto', sans-serif;
-        
+            font-family: 'Roboto', sans-serif;
+            background: url('/static/images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+         }
+         .text {
+            color: white;
+            text-align: center;
+         }
+         .form-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin:20px;
          }
          form {
+            text-align: center;
             padding: 30px;
             background-color: #f6d484;
-            
             border-radius: 20px;
+            font-size: 30px;
+            width: 400px;
          }
          .topnav {
          background-color: #333;
@@ -25,7 +40,7 @@
          float: left;
          color: #f2f2f2;
          text-align: center;
-         padding: 14px 16px;
+         padding: 20px 25px;
          text-decoration: none;
          font-size: 17px;
          }
@@ -39,6 +54,23 @@
          background-color: #04AA6D;
          color: white;
          }
+         .input{
+            padding: 10px 20px;
+            margin-bottom: 15px;
+         }
+         .submit-button { /*self explanatory, when clicked, will delete all the items in the 'ordered' container */
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+         }
+         .submit-button:hover {
+            background-color: #038a5f;
+         }
       </style>
    </head>
    <body>
@@ -50,16 +82,19 @@
          <a href="/order">Order</a>
          <a href="/account">Account</a>
       </div>
-      <h1 class="text">Register for an account here</h1>
-      <form method="POST" class="form">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br><br>
-        <label for="password">Password:</label><br>
-        <input type="text" id="password" name="password" required><br><br>
-        <label for="email">Email:    </label><br>
-        <input type="text" id="email" name="email" required><br><br>
-        <input type="submit">
-      </form>
+      
+      <div class="form-container">
+         <form method="POST" class="form">
+            <h3 class="text">Register</h3>
+            <!-- <label for="username">Username:</label><br> -->
+            <input type="text" id="username" name="username" placeholder= "Username" required size="30" class="input"><br>
+            <!-- <label for="password">Password:</label><br> -->
+            <input type="text" id="password" name="password" placeholder= "Password" required size="30" class="input"><br>
+            <!-- <label for="email">Email:    </label><br> -->
+            <input type="text" id="email" name="email" placeholder= "Email" required size="30" class="input"><br>
+            <input type="submit" value="Register" class="submit-button">
+         </form>
+      </div>
       {% with messages = get_flashed_messages() %}
       {% if messages %}
          

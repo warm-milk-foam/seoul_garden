@@ -150,7 +150,7 @@ def order():
 
     return render_template("order.html")
 
-@app.route("/submit_order")
+@app.route("/submit_order",methods=["POST"])
 def submit_order():
     if 'user_id' not in session:
         flash('You need to be logged in to access this page.', 'danger')

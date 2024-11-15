@@ -7,14 +7,32 @@
       <style>
          @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
          body {
-         font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto', sans-serif;
+            background: url('/static/images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+         }
+         .text{
+            color:white;
          }
          .flash {
             /*This is the code where we style the flash messages */
             color: #04AA6D;
          }
          form {
-            padding-left: 30px;
+            text-align: center;
+            padding: 30px;
+            background-color: #f6d484;
+            border-radius: 20px;
+            font-size: 30px;
+            width: 400px;
+         }
+         .form-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin:20px;
          }
          .topnav {
          background-color: #333;
@@ -36,6 +54,23 @@
          background-color: #04AA6D;
          color: white;
          }
+         .input{
+            padding: 10px 20px;
+            margin-bottom: 15px;
+         }
+         .submit-button { /*self explanatory, when clicked, will delete all the items in the 'ordered' container */
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+         }
+         .submit-button:hover {
+            background-color: #038a5f;
+         }
       </style>
    </head>
    <body>
@@ -48,14 +83,14 @@
          <a href="/order">Order</a>
          <a href="/account">Account</a>
       </div>
-      <h1 class="text">Welcome back</h1>
-      <form method="POST" action="/signin" class="form">
-         <label for="email">Email:    </label><br>
-         <input type="text" id="email" name="email" required><br><br>
-         <label for="password">Password:</label><br>
-         <input type="password" id="password" name="password" required><br><br>
-         <input type="submit" value="Sign In">
-       </form>
+      <div class="form-container">
+         <form method="POST" action="/signin" class="form">
+            <h3 class="text">Welcome back</h3>
+            <input type="text" id="email" name="email" required class="input" placeholder="Email"><br>
+            <input type="password" id="password" name="password" required class="input" placeholder="Password"><br>
+            <input type="submit" value="Sign In" class="submit-button">
+         </form>
+      </div>
       {% with messages = get_flashed_messages() %}
       {% if messages %}
          

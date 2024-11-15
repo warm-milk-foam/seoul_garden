@@ -256,12 +256,12 @@
             <div id="order-list"></div>
             <form id="order-form" method="POST" action="{{ url_for('submit_order') }}">
                 <label for="location">Dining location:</label><br>
-                <select name="lcoation" id="dining-location">
+                <select name="lcoation" id="dining-location" class="select-update">
                     <option value="volvo">Bugis Junction</option>
                     <option value="saab">Marina Square</option>
                     <option value="mercedes">Tampines Mall</option>
                     <option value="audi">Northpoint City</option>
-                  </select>
+                  </select><br>
 
                 <button type="submit" class="submit-button">Send order</button>
             </form>
