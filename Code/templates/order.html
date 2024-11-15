@@ -146,12 +146,13 @@
             color:white;
          }
          .large-select {
-            width: 100%; /* Adjust the width as needed */
-            height: 40px; /* Adjust the height as needed */
-            padding: 10px; /* Adjust the padding as needed */
-            font-size: 16px; /* Adjust the font size as needed */
-            border-radius: 5px; /* Optional: Add border-radius for rounded corners */
-         }
+            width: 100%; /* Ensures both fields are the same width */
+            height: 40px; /* Ensures both fields are the same height */
+            padding: 10px; /* Adds consistent padding */
+            font-size: 16px;
+            border-radius: 5px;
+            box-sizing: border-box; /* Prevents padding from affecting the width */
+        }
          form {
             text-align: center;
             padding: 30px;
@@ -292,7 +293,9 @@
                     <p>The best meal ever, it is the reason why our restaurant is the most famous, it is a must to have it</p>
                 </div>
                 
-                <h3>Price: $6.49</h3>
+                <h3>Price: $1000
+
+                </h3>
             </div>
 
         </div>
@@ -302,17 +305,19 @@
             <div id="order-list"></div>
             <div class="form-container">
                 <form id="order-form" method="POST" action="{{ url_for('submit_order') }}" class="form">
-                    <label for="location">Dining location:</label><br>
-                    <select name="location" id="dining-location" class="select-update large-select">
+
+                    <select name="location" id="dining-location" class="large-select">
+                        <option value="" disabled selected>Select your location</option>
                         <option value="Bugis Junction">Bugis Junction</option>
                         <option value="Marina Square">Marina Square</option>
                         <option value="Tampines Mall">Tampines Mall</option>
                         <option value="Northpoint City">Northpoint City</option>
                     </select><br>
+                    <input type=number min=1  placeholder="Number of Pax"class="large-select"></input>
                     
                     <!-- Move the order list inside the form -->
                     <div id="order-list"></div>
-            
+
                     <button type="submit" class="submit-button">Send order</button>
                 </form>
             </div>
