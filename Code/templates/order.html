@@ -150,6 +150,19 @@
             font-size: 16px; /* Adjust the font size as needed */
             border-radius: 5px; /* Optional: Add border-radius for rounded corners */
          }
+         form {
+            text-align: center;
+            padding: 30px;
+            border-radius: 20px;
+            font-size: 30px;
+            width: 400px;
+         }
+         .form-container{
+            display: flex;
+
+            align-items: center;
+            margin:20px;
+         }
       </style>
    </head>
    <body>
@@ -261,19 +274,22 @@
         </div>
         <div class="ordering">
 
-            <h3>Order list</h3>
+            <h2>Order list</h2>
             <div id="order-list"></div>
-            <form id="order-form" method="POST" action="{{ url_for('submit_order') }}">
-                <label for="location">Dining location:</label><br>
-                <select name="lcoation" id="dining-location" class="select-update large-select">
-                    <option value="volvo">Bugis Junction</option>
-                    <option value="saab">Marina Square</option>
-                    <option value="mercedes">Tampines Mall</option>
-                    <option value="audi">Northpoint City</option>
-                  </select><br>
+            <div class="form-container">
+                <form id="order-form" method="POST" action="{{ url_for('submit_order') }}" class="form">
+                    <label for="location">Dining location:</label><br>
+                    <select name="lcoation" id="dining-location" class="select-update large-select">
+                        <option value="volvo">Bugis Junction</option>
+                        <option value="saab">Marina Square</option>
+                        <option value="mercedes">Tampines Mall</option>
+                        <option value="audi">Northpoint City</option>
+                      </select><br>
+    
+                    <button type="submit" class="submit-button">Send order</button>
+                </form>
+            </div>
 
-                <button type="submit" class="submit-button">Send order</button>
-            </form>
 
         </div>
     </div>

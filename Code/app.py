@@ -11,8 +11,6 @@ import ollama
 app = Flask(__name__)
 app.secret_key = "this_key_does_not_need_to_be_private_lmao"
 
-setup_instructions = ""
-
 # The code to create paths IF THEY DO NOT exist, but typically would
 # error, faulty because the program relies on the stuff outside the code
 # if not os.path.exists('accounts'):
@@ -101,6 +99,8 @@ def chat():
         file.write("Recommendations: KungPao Chicken, Chicken rice, Buffet 1 for 1 special ")
 
     if request.method == "POST":
+        
+    
         user_input = request.form["user_input"] # this also does not work for some reason, probably the same reason as the  other
         response = chatbot_response(user_input)
 
@@ -203,5 +203,4 @@ def account():
     
 
 if __name__ == "__main__":
-    setup()
     app.run(debug=True, port=5000)
