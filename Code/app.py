@@ -179,20 +179,21 @@ def submit_order():
 
     user_id = session['user_id']
     order_history_path = f'orders/{user_id}_order_history.txt'
+    
 
     # Read the order items from the form data
+    location = request.form.get('location', 'Unknown location')
     order_items = request.form.getlist('order_item')
+    print("Order items received:", order_items)
 
-    # if not order_items:
-    #     flash('No items in the order list.', 'danger')
-    #     return redirect(url_for('order'))  
+    if not order_items:
+        flash('No items in the order list.', 'danger')
+        return redirect(url_for('order'))  
 
-    # we will hide the above lmao
-
-    # Save the order items to the order history file
     with open(order_history_path, 'a') as file:
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         file.write(f"Order placed at: {timestamp}\n")
+        file.write(f"Location: {location}\n")
         for item in order_items:
             file.write(f"{item}\n")
         file.write("\n")
@@ -223,6 +224,14 @@ def logout():
     # Clear the session
     session.clear()
     return redirect("/")
+
+
+# this is just a debug route
+@app.route("/debug_order", methods=["POST"])
+def debug_order():
+    print("Form data:", request.form)
+    return "Check the server logs"
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

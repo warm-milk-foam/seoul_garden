@@ -294,13 +294,16 @@
             <div class="form-container">
                 <form id="order-form" method="POST" action="{{ url_for('submit_order') }}" class="form">
                     <label for="location">Dining location:</label><br>
-                    <select name="lcoation" id="dining-location" class="select-update large-select">
-                        <option value="volvo">Bugis Junction</option>
-                        <option value="saab">Marina Square</option>
-                        <option value="mercedes">Tampines Mall</option>
-                        <option value="audi">Northpoint City</option>
-                      </select><br>
-    
+                    <select name="location" id="dining-location" class="select-update large-select">
+                        <option value="Bugis Junction">Bugis Junction</option>
+                        <option value="Marina Square">Marina Square</option>
+                        <option value="Tampines Mall">Tampines Mall</option>
+                        <option value="Northpoint City">Northpoint City</option>
+                    </select><br>
+                    
+                    <!-- Move the order list inside the form -->
+                    <div id="order-list"></div>
+            
                     <button type="submit" class="submit-button">Send order</button>
                 </form>
             </div>
@@ -310,36 +313,49 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const orderItems = document.querySelectorAll('.order-item');
-            const orderList = document.getElementById('order-list');
-    
-            orderItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const name = item.getAttribute('data-name');
-                    const price = item.getAttribute('data-price');
-    
-                    const orderListItem = document.createElement('div');
-                    orderListItem.classList.add('ordered-item');
-                    orderListItem.innerHTML = `
-                    <div>
-                        <h3>${name}</h3>
-                        <h3>Price: $${price}</h3>
-                    </div>
-                    <div class="delete_button"></div>
-                    <input type="hidden" name="order_item" value="${name} - $${price}">
-                    `;
-    
-                    const deleteButton = orderListItem.querySelector('.delete_button');
-                    deleteButton.addEventListener('click', function(event) {
-                        event.stopPropagation();
-                        orderListItem.remove();
-                    });
-    
-                    orderList.appendChild(orderListItem);
-                });
+document.addEventListener('DOMContentLoaded', function() {
+    const orderItems = document.querySelectorAll('.order-item');
+    const orderForm = document.getElementById('order-form');
+
+    orderItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const name = item.getAttribute('data-name');
+            const price = item.getAttribute('data-price');
+
+            // Create a container for the ordered item to display in the form
+            const orderListItem = document.createElement('div');
+            orderListItem.classList.add('ordered-item');
+            orderListItem.innerHTML = `
+                <div>
+                    <h3>${name}</h3>
+                    <h3>Price: $${price}</h3>
+                </div>
+                <div class="delete_button"></div>
+            `;
+
+            // Create a hidden input for the order item and append it to the form directly
+            const hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = 'order_item';
+            hiddenInput.value = `${name} - $${price}`;
+            orderForm.appendChild(hiddenInput);
+
+            // Add delete button functionality
+            const deleteButton = orderListItem.querySelector('.delete_button');
+            deleteButton.addEventListener('click', function(event) {
+                event.stopPropagation();
+                orderListItem.remove(); // Remove the displayed item
+                hiddenInput.remove();   // Remove the corresponding hidden input
             });
+
+            // Append the order list item to a visible area (not the form) for user view
+            const orderList = document.getElementById('order-list');
+            orderList.appendChild(orderListItem);
         });
+    });
+});
+
+
     </script>
 
    </body>
