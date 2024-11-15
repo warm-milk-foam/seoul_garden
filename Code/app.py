@@ -124,39 +124,40 @@ def chat():
 def chatbot_response(user_input, chat_history_path):
     global setup_instructions
 
-    # Load the chat history
+    # Load chat history
     chat_history = []
     if os.path.exists(chat_history_path):
         with open(chat_history_path, 'r') as file:
             chat_history = file.readlines()
 
-    # Prepare the messages for the chatbot
+    # Load order history
+    order_history_content = ""
+    if 'user_id' in session:
+        user_id = session['user_id']
+        order_history_path = f'orders/{user_id}_order_history.txt'
+        if os.path.exists(order_history_path):
+            with open(order_history_path, 'r') as file:
+                order_history_content = file.read()
+
+    # Prepare messages for the model
     messages = [
-        {
-            'role': 'system',
-            'content': setup_instructions
-        },
+        {'role': 'system', 'content': setup_instructions},
+        {'role': 'system', 'content': f"Order history: {order_history_content}"},
     ]
 
+    # Add chat history
     for line in chat_history:
         if line.startswith("User:"):
-            messages.append({
-                'role': 'user',
-                'content': line[len("User: "):].strip()
-            })
+            messages.append({'role': 'user', 'content': line[len("User: "):].strip()})
         elif line.startswith("Bot:"):
-            messages.append({
-                'role': 'assistant',
-                'content': line[len("Bot: "):].strip()
-            })
+            messages.append({'role': 'assistant', 'content': line[len("Bot: "):].strip()})
 
-    messages.append({
-        'role': 'user',
-        'content': user_input
-    })
+    # Append the latest user input
+    messages.append({'role': 'user', 'content': user_input})
 
+    # Call the model with the updated messages
     response = ollama.chat(model='llama3.2', messages=messages)
-    print(response)  # Add this line to see the response from the chatbot
+    print(response)  # For debugging purposes, to see the response
     return response['message']['content']
 
 
