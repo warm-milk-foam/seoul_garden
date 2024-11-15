@@ -183,9 +183,11 @@ def submit_order():
     # Read the order items from the form data
     order_items = request.form.getlist('order_item')
 
-    if not order_items:
-        flash('No items in the order list.', 'danger')
-        return redirect(url_for('order'))
+    # if not order_items:
+    #     flash('No items in the order list.', 'danger')
+    #     return redirect(url_for('order'))  
+
+    # we will hide the above lmao
 
     # Save the order items to the order history file
     with open(order_history_path, 'a') as file:
