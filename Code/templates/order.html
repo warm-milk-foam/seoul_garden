@@ -8,9 +8,8 @@
          @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
          body {
          font-family: 'Roboto', sans-serif;
-         background: url('/static/images/Background image 1.jpg') no-repeat center center fixed;
+         background: url('/static/images/background.jpg') no-repeat center center fixed;
          background-size: cover;
-
          }
          form {
             padding-left: 30px;
@@ -141,6 +140,16 @@
          .submit-button:hover {
             background-color: #038a5f;
          }
+         .text{
+            color:white;
+         }
+         .large-select {
+            width: 100%; /* Adjust the width as needed */
+            height: 40px; /* Adjust the height as needed */
+            padding: 10px; /* Adjust the padding as needed */
+            font-size: 16px; /* Adjust the font size as needed */
+            border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+         }
       </style>
    </head>
    <body>
@@ -256,7 +265,7 @@
             <div id="order-list"></div>
             <form id="order-form" method="POST" action="{{ url_for('submit_order') }}">
                 <label for="location">Dining location:</label><br>
-                <select name="lcoation" id="dining-location" class="select-update">
+                <select name="lcoation" id="dining-location" class="select-update large-select">
                     <option value="volvo">Bugis Junction</option>
                     <option value="saab">Marina Square</option>
                     <option value="mercedes">Tampines Mall</option>

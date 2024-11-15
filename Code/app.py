@@ -21,16 +21,20 @@ setup_instructions = ""
 #     os.makedirs('orders')
 # if not os.path.exists('chat_history'):
 #     os.makedirs('chat_history')
+
+setup_instructions = """You will act as a Chatbot for a restaurant called Seoul Garden.
+Your job is to enlighten the user on deals: Recommendations: KungPao Chicken, Chicken rice, Buffet 1 for 1 special
+Additionally, you should attempt to guide the user throughout the website, particularly on the order tab.
+To order food, they must click on their item and click the submit button to send requests.
+You start the job now."""
+
 def setup():
     #prompt the ollama model and give it instructions
+    global setup_instructions
     response = ollama.chat(model='llama3.2', messages=[
         {
             'role': 'user',
-            'content': """You will act as a Chatbot for a restaurant called Seoul Garden.
-              Your job is to enlighten the user on deals: Recommendations: KungPao Chicken, Chicken rice, Buffet 1 for 1 special
-              Additionally, you should attempt to guide the user throughout the website, particularly on the order tab.
-              To order food, they must click on their item and click the submit button to send requests.
-               You start the job now. """
+            'content': setup_instructions
         },
     ])
 
