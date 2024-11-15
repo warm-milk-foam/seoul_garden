@@ -71,6 +71,11 @@
          .submit-button:hover {
             background-color: #038a5f;
          }
+         .flash{
+            padding:20px 30px;
+            background-color: #ddd;
+            color:#038a5f;
+         }
       </style>
    </head>
    <body>
@@ -99,7 +104,7 @@
       {% if messages %}
          
           {% for message in messages %}
-              <p class="flash">{{ message }}</li>
+              <p class="flash">{{ message }}</p>
           {% endfor %}
    
       {% endif %}
