@@ -25,3 +25,22 @@ User: what is the word i told you
 Bot: You mentioned earlier that the word was "potato", but it seems like you might have made a mistake or forgotten to tell me again. If you're ready, I'd be happy to help you with our menu recommendations! 
 
 By the way, would you like to explore our menu options? We have some delicious dishes to choose from, such as KungPao Chicken, Chicken Rice, and more.
+User: what are some of the reccomendations for the dishes
+Bot: At Seoul Garden, we have many delicious options that are sure to satisfy your cravings. Here are a few recommendations:
+
+1. **KungPao Chicken**: A spicy Sichuan dish made with marinated chicken, peanuts, vegetables, and chili peppers.
+2. **Chicken Rice**: Our signature dish featuring juicy chicken served with fragrant rice cooked in chicken stock, garnished with fresh herbs and sesame seeds.
+3. **Buffet 1 for 1 Special**: Try a variety of our dishes at an unbeatable price! Choose any two items from our menu and enjoy a special discount.
+
+Would you like to explore more options or start ordering some of these recommended dishes?
+User: what are the reccomendations
+Bot: At Seoul Garden, we have some delicious options that we think you'll love.
+
+Here are our top recommendations:
+
+1. **Kung Pao Chicken**: A spicy Sichuan dish made with marinated chicken, peanuts, and vegetables, all stir-fried in a savory sauce.
+2. **Chicken Rice**: Our signature dish, featuring flavorful chicken served atop a bed of fragrant rice, steamed to perfection.
+
+We also have an exciting offer for you - our **Buffet 1 for 1 special**, where you can enjoy two meals for the price of one!
+
+Which one of these options sounds appealing to you?
