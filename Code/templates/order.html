@@ -204,7 +204,7 @@
 
     <div class="tabs">
         <div class="menu">
-            <h2>Menu</h2>
+            <h1>Menu</h1>
             <div class="order-item" id="1" data-name="Chicken rice" data-price="12.50">
                 <img src="{{ url_for('static', filename='images/chicken rice.jpg') }}" class="image">
                 <div class="order-description">
@@ -289,7 +289,7 @@
         </div>
         <div class="ordering">
 
-            <h2>Order list</h2>
+            <h1>Order list</h1>
             <div id="order-list"></div>
             <div class="form-container">
                 <form id="order-form" method="POST" action="{{ url_for('submit_order') }}" class="form">
@@ -313,14 +313,12 @@
         document.addEventListener('DOMContentLoaded', function() {
             const orderItems = document.querySelectorAll('.order-item');
             const orderList = document.getElementById('order-list');
-
+    
             orderItems.forEach(item => {
                 item.addEventListener('click', function() {
                     const name = item.getAttribute('data-name');
                     const price = item.getAttribute('data-price');
-
-                    // console.log(`Adding item: ${name} - $${price}`);
-                    // the javascript code works
+    
                     const orderListItem = document.createElement('div');
                     orderListItem.classList.add('ordered-item');
                     orderListItem.innerHTML = `
@@ -331,18 +329,15 @@
                     <div class="delete_button"></div>
                     <input type="hidden" name="order_item" value="${name} - $${price}">
                     `;
-                    console.log(orderListItem)
-                    // Add event listener to the delete button
+    
                     const deleteButton = orderListItem.querySelector('.delete_button');
                     deleteButton.addEventListener('click', function(event) {
-                        event.stopPropagation(); // Prevent the click event from bubbling up to the parent element
+                        event.stopPropagation();
                         orderListItem.remove();
                     });
-
+    
                     orderList.appendChild(orderListItem);
-
                 });
-                
             });
         });
     </script>

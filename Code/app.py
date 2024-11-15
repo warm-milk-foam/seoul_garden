@@ -171,7 +171,7 @@ def order():
 
     return render_template("order.html")
 
-@app.route("/submit_order",methods=["POST"])
+@app.route("/submit_order", methods=["POST"])
 def submit_order():
     if 'user_id' not in session:
         flash('You need to be logged in to access this page.', 'danger')
@@ -181,18 +181,16 @@ def submit_order():
     order_history_path = f'orders/{user_id}_order_history.txt'
 
     # Read the order items from the form data
-    order_items = request.data
-
+    order_items = request.form.getlist('order_item')
 
     if not order_items:
         flash('No items in the order list.', 'danger')
         return redirect(url_for('order'))
-    
+
     # Save the order items to the order history file
     with open(order_history_path, 'a') as file:
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         file.write(f"Order placed at: {timestamp}\n")
-        print(order_items)
         for item in order_items:
             file.write(f"{item}\n")
         file.write("\n")
