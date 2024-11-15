@@ -24,6 +24,7 @@ setup_instructions = """You will act as a Chatbot for a restaurant called Seoul 
 Your job is to enlighten the user on deals: Recommendations: KungPao Chicken, Chicken rice, Buffet 1 for 1 special
 Additionally, you should attempt to guide the user throughout the website, particularly on the order tab.
 To order food, they must click on their item and click the submit button to send requests.
+You are unable to actually make reservations/orders for the guests, but you can actually suggest food options to them
 You start the job now."""
 
 def setup():
@@ -87,22 +88,22 @@ def signin():
 
     return render_template("signin.html")
 
-@app.route("/chat", methods=["GET", "POST"]) # we need the methods to GET messages from the bot and POST messages to it
+@app.route("/chat", methods=["GET", "POST"])
 def chat():
-    if 'user_id' not in session: # the session is only granted by signin() function, so it checks for this
+    if 'user_id' not in session:
         flash('You need to be logged in to access this page.', 'danger')
-        return redirect(url_for('signin'))     # flask session carrying bruh
-    
+        return redirect(url_for('signin'))
+
     user_id = session['user_id']
     chat_history_path = f'chat_history/{user_id}_chat_history.txt'
-    with open(f'chat_history/{user_id}_chat_history.txt', 'w') as file:
-        file.write("Recommendations: KungPao Chicken, Chicken rice, Buffet 1 for 1 special ")
+
+    if not os.path.exists(chat_history_path):
+        with open(chat_history_path, 'w') as file:
+            file.write("Recommendations: KungPao Chicken, Chicken rice, Buffet 1 for 1 special\n")
 
     if request.method == "POST":
-        
-    
-        user_input = request.form["user_input"] # this also does not work for some reason, probably the same reason as the  other
-        response = chatbot_response(user_input)
+        user_input = request.form["user_input"]
+        response = chatbot_response(user_input, chat_history_path)
 
         # Save the chat history
         with open(chat_history_path, 'a') as file:
@@ -110,37 +111,53 @@ def chat():
             file.write(f"Bot: {response}\n")
 
         return jsonify({"response": response})
-    
+
     # Load the chat history
     chat_history = []
     if os.path.exists(chat_history_path):
         with open(chat_history_path, 'r') as file:
             chat_history = file.readlines()
 
-    print(f"Chat history for user {user_id}: {chat_history}")
     return render_template("chat.html", chat_history=chat_history)
 
-
   
-def chatbot_response(user_input):
-    # user_id = session['user_id']
-    # Use the ollama module to get the chatbot response
-    # chat_history_path = f'chat_history/{user_id}_chat_history.txt'
+def chatbot_response(user_input, chat_history_path):
     global setup_instructions
-    response = ollama.chat(model='llama3.2', messages=[
+
+    # Load the chat history
+    chat_history = []
+    if os.path.exists(chat_history_path):
+        with open(chat_history_path, 'r') as file:
+            chat_history = file.readlines()
+
+    # Prepare the messages for the chatbot
+    messages = [
         {
             'role': 'system',
             'content': setup_instructions
         },
-        {
-            'role': 'user',
-            'content': user_input
-        },
-    ])
-    print(response)
+    ]
+
+    for line in chat_history:
+        if line.startswith("User:"):
+            messages.append({
+                'role': 'user',
+                'content': line[len("User: "):].strip()
+            })
+        elif line.startswith("Bot:"):
+            messages.append({
+                'role': 'assistant',
+                'content': line[len("Bot: "):].strip()
+            })
+
+    messages.append({
+        'role': 'user',
+        'content': user_input
+    })
+
+    response = ollama.chat(model='llama3.2', messages=messages)
+    print(response)  # Add this line to see the response from the chatbot
     return response['message']['content']
-    
-    # error because it cannot be found by the model
 
 
 @app.route("/order")
