@@ -9,8 +9,6 @@ Todo list:
 4) When the chat system is finished, make it so that the AI can have access to the order history and previous info told to it by the user
 5) Make it so when an account is made, recommendations are automatically written to it as well (done)
 
-To fix the chat system, figure out how to use the local ollama API (dont have to use subprocess)
-
 
 
 Extra:

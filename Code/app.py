@@ -218,6 +218,11 @@ def account():
 
     return render_template("account.html", user_info=user_info)
     
+@app.route("/logout")
+def logout():
+    # Clear the session
+    session.clear()
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

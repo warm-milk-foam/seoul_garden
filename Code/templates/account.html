@@ -45,6 +45,20 @@
          .text{
             color:white;
          }
+         .logoutbuttom {
+            position: relative; /* Ensure the element is positioned correctly */
+            margin-top: 20px;
+            padding: 20px 20px;
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            text-decoration: none;
+            display: inline-block; /* Ensure the element is displayed as a block */
+        }
+    </style>
       </style>
    </head>
    <body>
@@ -63,6 +77,9 @@
         <p><strong>Email:</strong> {{ user_info.email }}</p>
         <p><strong>Created At:</strong> {{ user_info.created_at }}</p>
       </div>
+      <a href="/logout" class="logoutbuttom">Log out</a>
+
+
       {% with messages = get_flashed_messages() %}
       {% if messages %}
          
