@@ -98,6 +98,7 @@
                height: 100px;
                width: 100px;
                overflow: hidden;
+               object-fit: cover;
          }
          .ordered-item { /*After the item was ordered, it appears on the right */
             display: flex;
@@ -291,12 +292,48 @@
                 <div class="order-description">
                     <h2>Samuel's specialty</h2>
                     <p>The best meal ever, it is the reason why our restaurant is the most famous, it is a must to have it</p>
-                </div>
-                
-                <h3>Price: $1000
-
+                </div>      
+                    <h3>Price: $1000
                 </h3>
             </div>
+            <div class="order-item" id="11" data-name="Coke" data-price="1.50">
+                <img src="{{ url_for('static', filename='images/coke.jpg') }}" class="image">
+                <div class="order-description">
+                    <h2>Coke</h2>
+                    <p>Coco-cola</p>
+                </div>      
+                    <h3>Price: $1.50
+                </h3>
+            </div>
+            <div class="order-item" id="12" data-name="Pepsi" data-price="1.50">
+                <img src="{{ url_for('static', filename='images/pepsi.jpg') }}" class="image">
+                <div class="order-description">
+                    <h2>Pepsi</h2>
+                    <p>Alternative Coco-cola :)</p>
+                </div>      
+                    <h3>Price: $1.50
+                </h3>
+            </div>
+            <div class="order-item" id="13" data-name="Water" data-price="1.0">
+                <img src="{{ url_for('static', filename='images/water.jpg') }}" class="image">
+                <div class="order-description">
+                    <h2>Water</h2>
+                    <p>Toilet version available for purchase as well, please request from our staff</p>
+                </div>      
+                    <h3>Price: $1.0
+                </h3>
+            </div>
+            <div class="order-item" id="14" data-name="Wine" data-price="5.0">
+                <img src="{{ url_for('static', filename='images/wine.jpg') }}" class="image">
+                <div class="order-description">
+                    <h2>Wine</h2>
+                    <p>Fine wine</p>
+                </div>      
+                    <h3>Price: $5.0
+                </h3>
+            </div>
+
+
 
         </div>
         <div class="ordering">
