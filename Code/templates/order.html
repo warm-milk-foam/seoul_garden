@@ -57,7 +57,8 @@
                background: linear-gradient(180deg, rgb(254, 255, 169) 0%, rgb(255, 255, 255) 100%);
                align-content: baseline;
                border: 5px solid grey;
-               border-radius: 5px;
+               border-radius: 15px;
+               margin:10px;
          }
          .ordering { /*ordering is the order list on the right, the container where the ordered items ares */
                width: 40%;
@@ -66,6 +67,9 @@
                padding: 40px;
                background: linear-gradient(180deg, rgb(189, 223, 255) 0%, rgb(255, 255, 255) 100%);
                align-content: baseline;
+               margin:10px;
+               border: 5px solid grey;
+               border-radius: 15px;
          }
          .tabs{
             display:flex;
@@ -296,13 +300,13 @@
                     <h3>Price: $1000
                 </h3>
             </div>
-            <div class="order-item" id="11" data-name="buffet" data-price="60.00">
+            <div class="order-item" id="11" data-name="buffet" data-price="25.00">
                 <img src="{{ url_for('static', filename='images/buffet.jpg') }}" class="image">
                 <div class="order-description">
                     <h2>Buffet 2 hours</h2>
                     <p>Buffet all you can eat for 2 hours, serves one customer only</p>
                 </div>      
-                    <h3>Price: $60
+                    <h3>Price: $25
                 </h3>
             </div>
             <div class="order-item" id="12" data-name="Coke" data-price="1.50">
@@ -349,17 +353,22 @@
 
             <h1>Order list</h1>
             <div id="order-list"></div>
+
+            <div id="total-bill">
+                <h3>Total: $<span id="total-amount">0.00</span></h3>
+            </div>
+
             <div class="form-container">
                 <form id="order-form" method="POST" action="{{ url_for('submit_order') }}" class="form">
 
-                    <select name="location" id="dining-location" class="large-select">
+                    <select name="location" id="dining-location" class="large-select" required>
                         <option value="" disabled selected>Select your location</option>
                         <option value="Bugis Junction">Bugis Junction</option>
                         <option value="Marina Square">Marina Square</option>
                         <option value="Tampines Mall">Tampines Mall</option>
                         <option value="Northpoint City">Northpoint City</option>
                     </select><br>
-                    <input type=number min=1  placeholder="Number of Pax"class="large-select"></input>
+                    <input type=number min=1  placeholder="Number of Pax"class="large-select" required></input>
                     
                     <!-- Move the order list inside the form -->
                     <div id="order-list"></div>
@@ -376,11 +385,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     const orderItems = document.querySelectorAll('.order-item');
     const orderForm = document.getElementById('order-form');
+    const totalAmountElem = document.getElementById('total-amount'); // To display total
+    let totalAmount = 0; // Initialize total amount
 
     orderItems.forEach(item => {
         item.addEventListener('click', function() {
             const name = item.getAttribute('data-name');
-            const price = item.getAttribute('data-price');
+            const price = parseFloat(item.getAttribute('data-price')); // Get price as number
 
             // Create a container for the ordered item to display in the form
             const orderListItem = document.createElement('div');
@@ -388,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function() {
             orderListItem.innerHTML = `
                 <div>
                     <h3>${name}</h3>
-                    <h3>Price: $${price}</h3>
+                    <h3>Price: $${price.toFixed(2)}</h3>
                 </div>
                 <div class="delete_button"></div>
             `;
@@ -397,7 +408,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const hiddenInput = document.createElement('input');
             hiddenInput.type = 'hidden';
             hiddenInput.name = 'order_item';
-            hiddenInput.value = `${name} - $${price}`;
+            hiddenInput.value = `${name} - $${price.toFixed(2)}`;
             orderForm.appendChild(hiddenInput);
 
             // Add delete button functionality
@@ -406,14 +417,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 event.stopPropagation();
                 orderListItem.remove(); // Remove the displayed item
                 hiddenInput.remove();   // Remove the corresponding hidden input
+
+                // Recalculate the total
+                totalAmount -= price;
+                totalAmountElem.textContent = totalAmount.toFixed(2);
             });
 
             // Append the order list item to a visible area (not the form) for user view
             const orderList = document.getElementById('order-list');
             orderList.appendChild(orderListItem);
+
+            // Update total amount
+            totalAmount += price;
+            totalAmountElem.textContent = totalAmount.toFixed(2);
         });
     });
 });
+
 
 
     </script>
