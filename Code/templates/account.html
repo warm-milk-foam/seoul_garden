@@ -4,62 +4,8 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <style>
-         @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-         body {
-         font-family: 'Roboto', sans-serif;
-         background: url('/static/images/background.jpg') no-repeat center center fixed;
-         background-size: cover;
-         }
-         form {
-            padding-left: 30px;
-         }
-         .topnav {
-         background-color: #333;
-         overflow: hidden;
-         }
-         /* Style the links inside the navigation bar */
-         .topnav a {
-         float: left;
-         color: #f2f2f2;
-         text-align: center;
-         padding: 20px 25px;
-         text-decoration: none;
-         font-size: 17px;
-         }
-         /* Change the color of links on hover */
-         .topnav a:hover {
-         background-color: #ddd;
-         color: black;
-         }
-         /* Add a color to the active/current link */
-         .topnav a.active {
-         background-color: #04AA6D;
-         color: white;
-         }
-         .user-info{
-            padding: 30px;
-            background-color: #f6d484;
-            border-radius: 30px;
-         }
-         .text{
-            color:white;
-         }
-         .logoutbuttom {
-            position: relative; /* Ensure the element is positioned correctly */
-            margin-top: 20px;
-            padding: 20px 20px;
-            background-color: #ff4444;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 20px;
-            text-decoration: none;
-            display: inline-block; /* Ensure the element is displayed as a block */
-        }
-    </style>
-      </style>
+      <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> 
+    
    </head>
    <body>
       <div class="topnav">
