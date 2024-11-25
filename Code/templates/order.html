@@ -16,18 +16,18 @@
          <a href="/order">Order</a>
          <a href="/account">Account</a>
       </div>
-      <h1 class="text">Ordering page</h1>
       <div class="user-info">
-         {% with messages = get_flashed_messages() %}
-         {% if messages %}
+        <h1 class="text">Ordering page</h1>
+      </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
 
-             {% for message in messages %}
-                 <p class="flash">{{ message }}</li>
-             {% endfor %}
+            {% for message in messages %}
+                <p class="flash">{{ message }}</li>
+            {% endfor %}
 
-         {% endif %}
-         {% endwith %}
-     </div>
+        {% endif %}
+        {% endwith %}
 
     <div class="tabs">
         <div class="menu">
