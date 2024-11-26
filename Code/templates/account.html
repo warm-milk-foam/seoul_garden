@@ -27,7 +27,7 @@
          <div class="order-history">
             {% for order in orders %}
                <div class="order-item">
-                  {{ order | safe }}
+                  <pre>{{ order | safe }}</pre>
                </div>
             {% endfor %}
          </div>

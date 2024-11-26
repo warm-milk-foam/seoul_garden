@@ -86,7 +86,7 @@ form {
 .chat-container {
     display: flex;
     flex-direction: column;
-    height: 80vh;
+    min-height: 80vh;
     margin: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -416,6 +416,12 @@ ul.bullet {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.order-item pre {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    white-space: pre-wrap; 
+    word-wrap: break-word; 
+}
 .order-item p {
     margin: 5px 0;
 }
