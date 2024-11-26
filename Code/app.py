@@ -217,6 +217,14 @@ def submit_order():
     flash('Order submitted successfully!', 'success')
     return redirect(url_for('order'))
 
+
+def read_order_history():
+    user_id = session['user_id']
+    file_path = os.path.join('orders', f'{user_id}_order_history.txt')
+    with open(file_path, 'r') as file:
+        orders = file.read().split('\n\n')
+    return orders
+
 @app.route("/account")
 def account():
     if 'user_id' not in session:
@@ -233,7 +241,8 @@ def account():
         user_info['email'] = lines[3].strip().split(': ')[1]
         user_info['created_at'] = lines[4].strip().split(': ')[1]
 
-    return render_template("account.html", user_info=user_info)
+    orders = read_order_history()
+    return render_template("account.html", user_info=user_info, orders=orders)
     
 @app.route("/logout")
 def logout():
