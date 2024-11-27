@@ -212,7 +212,7 @@ def submit_order():
         file.write(f"Location: {location}\n")
         for item in order_items:
             file.write(f"{item}\n")
-        file.write("\n")
+        
 
     flash('Order submitted successfully!', 'success')
     return redirect(url_for('order'))

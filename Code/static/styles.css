@@ -179,7 +179,7 @@ form {
     align-items: center;
     padding: 20px;
     margin: 5px;
-    background-color: rgb(189, 189, 189);
+    background-color: rgb(168, 168, 168);
     border-radius: 10px;
     justify-content: space-between;
     cursor: pointer;
@@ -371,8 +371,8 @@ ul.bullet {
 }
 
 .signuplink {
-    position: relative;
-    transform: translateY(-300px) translateX(525px);
+    position: absolute;
+    transform: translateY(-300%) translateX(175%);
     margin-top: 20px;
     margin-bottom: 100px;
     padding: 40px 50px;
@@ -409,7 +409,7 @@ ul.bullet {
 }
 
 .order-item {
-    background-color: #fff;
+    background-color: #a7a7a7;
     padding: 15px;
     border-radius: 5px;
     margin-bottom: 10px;
