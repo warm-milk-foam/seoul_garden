@@ -36,7 +36,9 @@
       {% with messages = get_flashed_messages() %}
       {% if messages %}
          {% for message in messages %}
+            {% if message != "\n" %}
             <p class="flash">{{ message }}</p>
+            {% endif %}
          {% endfor %}
       {% endif %}
       {% endwith %}
