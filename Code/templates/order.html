@@ -19,15 +19,15 @@
       <div class="user-info">
         <h1 class="text">Ordering page</h1>
       </div>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-
-            {% for message in messages %}
-                <p class="flash" style= position:absolute;left:36%;top:30%;color:green>{{ message }}</li>
-            {% endfor %}
-
-        {% endif %}
-        {% endwith %}
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          <div class="flash-messages">
+              {% for message in messages %}
+                  <p class="flash">{{ message }}</p>
+              {% endfor %}
+          </div>
+      {% endif %}
+      {% endwith %}
 
     <div class="tabs">
         <div class="menu">

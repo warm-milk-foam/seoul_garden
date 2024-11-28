@@ -24,18 +24,16 @@
             <input type="submit" value="Sign In" class="submit-button" required size="30">
          </form>
       </div>
+
       {% with messages = get_flashed_messages() %}
       {% if messages %}
-         
-          {% for message in messages %}
-            <div class="flash" 
-            style= position:absolute;left:36%;top:80%;color:red;>
-               <p>{{ message }}</p>
-            </div>
-              
-          {% endfor %}
-   
+          <div class="flash-messages">
+              {% for message in messages %}
+                  <p class="flash" style="color:black;margin-top:80%;">{{ message }}</p>
+              {% endfor %}
+          </div>
       {% endif %}
-      {% endwith %}   
+      {% endwith %}
+    
    </body>
 </html>

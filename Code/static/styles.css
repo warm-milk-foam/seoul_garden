@@ -262,18 +262,30 @@ form {
     margin: 20px;
 }
 
-.flash {
-    padding: 20px 30px;
-    text-align: center;
-    background-color: #ddd;
-    color: black;
-    max-width: 300px;
-    font-weight: bold;
-    font-size: 25px;
-    border-radius: 20px;
-    /* box-shadow: 10px 15px 25px black; */
-
+.flash-messages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 400px;
 }
+
+.flash {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 20px;
+    margin: 5px 0;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
+}
+
 
 .background-container {
     position: relative;
@@ -319,7 +331,7 @@ form {
     background: linear-gradient(180deg, rgb(255, 80, 80) 0%, rgb(255, 122, 69) 100%);
     max-width: 400px;
     margin-top: 3%;
-    margin-left: 10%;
+    margin-left: 12%;
     padding: 2%;
     box-shadow: 10px 10px 20px black;
     border-radius: 20px;
@@ -332,7 +344,7 @@ form {
     color: white;
     background: linear-gradient(180deg, rgb(40, 44, 255) 0%, rgb(150, 21, 255) 100%);
     max-width: 500px;
-    margin-left: 52%;
+    margin-left: 54%;
     padding: 20px;
     box-shadow: 10px 10px 20px black;
     border-radius: 20px;
@@ -358,7 +370,7 @@ form {
     color: white;
     background: linear-gradient(135deg, rgb(4, 92, 9) 0%, rgb(50, 255, 77) 100%);
     max-width: 600px;
-    margin-left: 24%;
+    margin-left: 26%;
     margin-top: 45%;
     padding: 5%;
     box-shadow: 10px 10px 20px black;
@@ -372,7 +384,7 @@ ul.bullet {
 
 .signuplink {
     position: absolute;
-    transform: translateY(-300%) translateX(175%);
+    transform: translateY(-300%) translateX(200%);
     margin-top: 20px;
     margin-bottom: 100px;
     padding: 40px 50px;
