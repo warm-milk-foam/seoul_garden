@@ -63,10 +63,6 @@ form {
     color: white;
     text-align: center;
 }
-/* .sign-text { /*css rules for the signup, signin text 
-    color: white;
-    text-align: center;
-} */
 
 .logoutbuttom {
     position: relative;
@@ -325,6 +321,10 @@ form {
     max-width: 800px;
 }
 
+.posters-container {
+    margin-top: 10rem;
+}
+
 .poster {
     direction: column;
     color: white;
@@ -365,17 +365,28 @@ form {
     transform: translateY(500px);
 }
 
+.features-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust as needed */
+}
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
 .features {
     direction: column;
     color: white;
     background: linear-gradient(135deg, rgb(4, 92, 9) 0%, rgb(50, 255, 77) 100%);
     max-width: 600px;
-    margin-left: 26%;
-    margin-top: 45%;
     padding: 5%;
     box-shadow: 10px 10px 20px black;
     border-radius: 20px;
     padding: 40px;
+    transform: translateY(300px);
 }
 
 ul.bullet {
@@ -384,8 +395,7 @@ ul.bullet {
 
 .signuplink {
     position: absolute;
-    transform: translateY(-300%) translateX(200%);
-    margin-top: 20px;
+
     margin-bottom: 100px;
     padding: 40px 50px;
     background-color: #04AA6D;
