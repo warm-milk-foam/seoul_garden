@@ -44,3 +44,11 @@ Here are our top recommendations:
 We also have an exciting offer for you - our **Buffet 1 for 1 special**, where you can enjoy two meals for the price of one!
 
 Which one of these options sounds appealing to you?
+User: Hello there what should I eat
+Bot: We have a few great deals and recommendations at Seoul Garden. Here are a few suggestions:
+
+1. **Kung Pao Chicken**: Our signature dish made with marinated chicken, peanuts, and vegetables in a spicy sauce.
+2. **Chicken Rice**: A classic comfort food dish that's both simple and flavorful.
+3. **Buffet Option 1 for 1 Special**: Try our buffet option where you can enjoy two dishes at a special price.
+
+Which one of these options sounds appealing to you?
