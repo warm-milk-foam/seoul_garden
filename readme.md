@@ -30,8 +30,3 @@ The project aims to automate:
 2) Use an AI model to promote and recommend deals, using information from order histories
 3) Order food 'online'  
 5) All the data is persistent so the chatbot will still remember your information after finishing orders!
-
-# Requirements
-```
-pip3 install -r requirements.txt
-```
