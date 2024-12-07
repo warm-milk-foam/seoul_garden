@@ -39,11 +39,6 @@ form {
     color: black;
 }
 
-.topnav a.active {
-    background-color: #04AA6D;
-    color: white;
-}
-
 .user-info {
     padding: 30px;
     background-color: #f6d484;
