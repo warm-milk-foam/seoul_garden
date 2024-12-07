@@ -14,7 +14,7 @@ form {
     padding-left: 30px;
     text-align: center;
     padding: 30px;
-    background: linear-gradient(180deg, #97b1c7 0%, #AED9E0 100%);
+    background: #badfff;
     border-radius: 20px;
     font-size: 30px;
     width: 400px;
@@ -141,11 +141,12 @@ form {
     flex-direction: column;
     align-items: flex-start;
     padding: 40px;
-    background: linear-gradient(180deg, rgb(254, 255, 169) 0%, rgb(255, 255, 255) 100%);
+    background: rgb(231, 244, 255);
     align-content: baseline;
-    border: 5px solid grey;
-    border-radius: 15px;
-    margin: 10px;
+    /* border: 5px solid grey; */
+    /* border-radius: 15px; */
+    margin-left: 10px;
+    margin-top: 10px;
 }
 
 .ordering {
@@ -153,11 +154,13 @@ form {
     flex-direction: column;
     align-items: flex-start;
     padding: 40px;
-    background: linear-gradient(180deg, rgb(189, 223, 255) 0%, rgb(255, 255, 255) 100%);
+    background: rgb(231, 244, 255);
     align-content: baseline;
-    margin: 10px;
-    border: 5px solid grey;
-    border-radius: 15px;
+    margin-right: 10px;
+    margin-top: 10px;
+    /* border-left: solid 5px grey; */
+    /* border: 5px solid grey; */
+    /*border-radius: 15px; */
 }
 
 .tabs {
@@ -170,7 +173,7 @@ form {
     align-items: center;
     padding: 20px;
     margin: 5px;
-    background-color: rgb(168, 168, 168);
+    background-color: #cecece;
     border-radius: 10px;
     justify-content: space-between;
     cursor: pointer;
@@ -186,7 +189,7 @@ form {
 }
 
 .order-item:hover {
-    background-color: #999999;
+    background-color: #cccccc;
     box-shadow: 5px 5px 10px;
     justify-content: space-between;
     padding: 20px;
