@@ -26,10 +26,15 @@
          <h1 class="text">Order history</h1>
          <div class="order-history">
             {% for order in orders %}
-               <div class="order-item">
+            {% if order.strip() %}
+               <div class="order-item">                  
                   <pre>{{ order | safe }}</pre>
                </div>
+               {% else %}
+               <p>No order found. Try ordering some food!</p>
+            {% endif %}
             {% endfor %}
+
          </div>
       </div>
       <a href="/logout" class="logoutbuttom">Log out</a>
