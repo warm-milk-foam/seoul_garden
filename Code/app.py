@@ -9,16 +9,8 @@ import requests
 import ollama
 
 app = Flask(__name__)
-app.secret_key = "this_key_does_not_need_to_be_private_lmao"
+app.secret_key = "this_does_nothing" # because nothing sensitive is provided
 
-# The code to create paths IF THEY DO NOT exist, but typically would
-# error, faulty because the program relies on the stuff outside the code
-# if not os.path.exists('accounts'):
-#     os.makedirs('accounts')
-# if not os.path.exists('orders'):
-#     os.makedirs('orders')
-# if not os.path.exists('chat_history'):
-#     os.makedirs('chat_history')
 
 setup_instructions = """You will act as a Chatbot for a restaurant called Seoul Garden.
 Your job is to enlighten the user on deals: Recommendations: KungPao Chicken, Chicken rice, Buffet 1 for 1 special
@@ -222,10 +214,14 @@ def submit_order():
 def read_order_history():
     user_id = session['user_id']
     file_path = os.path.join('orders', f'{user_id}_order_history.txt')
-    with open(file_path, 'r') as file:
-        orders = file.read().split('\n\n')
-    return orders
 
+    if not os.path.exists(file_path):  # Ensure file exists to avoid errors
+        return []
+
+    with open(file_path, 'r') as file:
+        orders = [order.strip() for order in file.read().split('\n\n') if order.strip()]
+    
+    return orders  # Returns only non-empty orders
 @app.route("/account")
 def account():
     if 'user_id' not in session:

@@ -7,18 +7,17 @@
       <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> 
    </head>
    <body>
-
-      <div class="topnav">
-         <a class="active" href="/">Home</a>
-         <a href="/signup">Sign up</a>
-         <a href="/signin">Sign in</a>
-         <a href="/chat">Chat</a>
-         <a href="/order">Order</a>
-         <a href="/account">Account</a>
-      </div>
-      <div class="user-info">
+    <div class="topnav">
+        <a href="/"><i class="fa fa-home"></i> Home</a>
+        <!-- <a href="/signup"><i class="fa fa-user-plus"></i> Sign up</a>
+        <a href="/signin"><i class="fa fa-sign-in"></i> Sign in</a> -->
+        <a href="/chat"><i class="fa fa-comments"></i> Chat</a>
+        <a href="/order"><i class="fa fa-shopping-cart"></i> Order</a>
+        <a href="/account"><i class="fa fa-user"></i> Account</a>
+    </div>
+      <!-- <div class="user-info">
         <h1 class="text">Ordering page</h1>
-      </div>
+      </div> -->
       {% with messages = get_flashed_messages() %}
       {% if messages %}
           <div class="flash-messages">
@@ -36,7 +35,7 @@
                 <img src="{{ url_for('static', filename='images/chicken rice.jpg') }}" class="image">
                 <div class="order-description">
                     <h2>Chicken rice</h2>
-                    <p>A good ol' Hainese chicken rice. Definitely not a scam</p>
+                    <p>Class Chicken rice, always a good pick!</p>
                 </div>
                 
                 <h3>Price: $12.50</h3>
@@ -72,7 +71,7 @@
                   <img src="{{ url_for('static', filename='images/pasta.jpg') }}" class="image">
                   <div class="order-description">
                     <h2>Pasta Alfredo</h2>
-                    <p>We don't remember being an Italian restaurant, but sure why not I guess</p>
+                    <p>Flavourful and creamy pasta with mushrooms</p>
                   </div>
                   
                   <h3>Price: $11.75</h3>
@@ -81,7 +80,7 @@
                   <img src="{{ url_for('static', filename='images/rice.jpg') }}" class="image">
                   <div class="order-description">
                     <h2>Plain rice</h2>
-                    <p>You came to a 5 star restaurant and you decide to order plain rice? lmao</p>
+                    <p>If you want more cabohydrates</p>
                   </div>
                   
                   <h3>Price: $1.50</h3>
@@ -90,7 +89,7 @@
                 <img src="{{ url_for('static', filename='images/chicken-skewers.jpg') }}" class="image">
                 <div class="order-description">
                     <h2>Chicken skewers</h2>
-                    <p>Grilled to perfection over applewood, low and slow. (definitely not a MaxtheMeatGuy reference)</p>
+                    <p>Grilled to perfection over charcoal and seasoned freshly, a delicious choice for first-timers!</p>
                 </div>
                 
                 <h3>Price: $7.99</h3>
@@ -107,16 +106,16 @@
                 <img src="{{ url_for('static', filename='images/vegetable.jpg') }}" class="image">
                 <div class="order-description">
                     <h2>Stir fried vegetables</h2>
-                    <p>Touch grass now</p>
+                    <p>Cooked with olive oil and garlic</p>
                 </div>
                 
                 <h3>Price: $6.49</h3>
             </div>
-            <div class="order-item" id="10" data-name="Samuel's specialty" data-price="69.00">
+            <div class="order-item" id="10" data-name="Samuel's specialty" data-price="40.00">
                 <img src="{{ url_for('static', filename='images/most-delicious.jpg') }}" class="image">
                 <div class="order-description">
                     <h2>Samuel's specialty</h2>
-                    <p>The best meal ever, it is the reason why our restaurant is the most famous, it is a must to have it</p>
+                    <p>Best AWS meal</p>
                 </div>      
                     <h3>Price: $1000
                 </h3>

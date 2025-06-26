@@ -1,10 +1,15 @@
 # Seoul Garden Project 
 Students of AWS Accelerator 2024  
-By Ingo, Liu JunHao, Samuel Koh, Gabriel Tang, Mikail Jnr and Jeniece Tham  
+By Ingo Iskandar, Liu JunHao, Samuel Koh, Gabriel Tang, Mikail Jnr and Jeniece Tham  
 
 This respository is the code we wrote for the Seoul Garden challenge statement  
 
-To run the experience, clone the repository and run the app.py file with  
+To run the experience, clone the repository and run the app.py file by first installing all the requirements
+```
+pip3 install -r requirements.txt
+```
+Note: You need llama3.2:latest (2.0 GB) on ollama to run the program  
+Then you can run with   
 ```
 python3 app.py
 ```
@@ -23,13 +28,5 @@ DISCLAIMER: This is just a local project and WILL NOT have real functionality in
 The project aims to automate:  
 1) Create and authenticate accounts 
 2) Use an AI model to promote and recommend deals, using information from order histories
-3) Order food online(?)  
+3) Order food 'online'  
 5) All the data is persistent so the chatbot will still remember your information after finishing orders!
-
-# Requirements
-Dependencies, ibraries and other stuff to be installed so that the project can run  
-(I should add this into a requirements.txt file)  
-1) Ollama, specifically using llama3.2:latest with a size of 2.0 GB  
-2) Flask and its own modules, request, render_template, redirect, url_for, flash, session, jsonify  
-3) Other modules such as os, uuid, datetime library, and subprocess
-4) Python3
