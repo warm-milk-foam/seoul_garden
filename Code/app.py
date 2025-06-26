@@ -9,16 +9,8 @@ import requests
 import ollama
 
 app = Flask(__name__)
-app.secret_key = "this_key_does_not_need_to_be_private_lmao"
+app.secret_key = "this_does_nothing" # because nothing sensitive is provided
 
-# The code to create paths IF THEY DO NOT exist, but typically would
-# error, faulty because the program relies on the stuff outside the code
-# if not os.path.exists('accounts'):
-#     os.makedirs('accounts')
-# if not os.path.exists('orders'):
-#     os.makedirs('orders')
-# if not os.path.exists('chat_history'):
-#     os.makedirs('chat_history')
 
 setup_instructions = """You will act as a Chatbot for a restaurant called Seoul Garden.
 Your job is to enlighten the user on deals: Recommendations: KungPao Chicken, Chicken rice, Buffet 1 for 1 special
